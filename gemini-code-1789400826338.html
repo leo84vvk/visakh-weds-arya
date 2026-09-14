@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Visakh & Arya — Wedding Invitation</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Great+Vibes&family=Gayathri:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --maroon: #681525;
+      --gold-primary: #C59A3F;
+      --gold-deep: #8E6B23;
+      --gold-light: #F4E8C1;
+      --cream-bg: #F8F5EE;
+      --card-white: #FFFFFF;
+      --charcoal: #2A2526;
+      --muted: #6B6664;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #1a1718;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* Mobile Container Frame */
+    .app-screen {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      max-width: 430px;
+      max-height: 900px;
+      background: var(--cream-bg);
+      overflow-y: auto;
+      overflow-x: hidden;
+      perspective: 1000px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    @media (min-width: 480px) {
+      .app-screen {
+        height: 92vh;
+        border-radius: 28px;
+        border: 4px solid #2B2627;
+      }
+    }
+
+    /* Kasavu Gold Top & Bottom Borders */
+    .kasavu-stripe {
+      height: 6px;
+      background: linear-gradient(90deg, #681525 0%, #C59A3F 30%, #FFE9B3 50%, #C59A3F 70%, #681525 100%);
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    /* ===================================================
+       ENVELOPE OVERLAY & WAX SEAL ANIMATION
+       =================================================== */
+    .envelope-modal {
+      position: absolute;
+      inset: 0;
+      background: #EFE9DC;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .envelope-modal.opened {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-80px) scale(0.95);
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      background: #E5DFCE;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+      border: 1px solid rgba(197, 154, 63, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Flap Top */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 110px solid #D5CEBA;
+      transform-origin: top center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2;
+    }
+
+    .envelope-flap.flip-open {
+      transform: rotateX(180deg);
+    }
+
+    /* Wax Seal */
+    .wax-seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 76px;
+      height: 76px;
+      background: radial-gradient(circle at 35% 35%, #9E243B, #681525, #420A14);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #F8E2AC;
+      box-shadow: 0 8px 18px rgba(104, 21, 37, 0.45), inset 0 2px 4px rgba(255,255,255,0.25);
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.2s ease;
+      border: 2px dashed rgba(248, 226, 172, 0.4);
+    }
+
+    .wax-seal:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .seal-monogram {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .seal-hint {
+      margin-top: 24px;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    /* ===================================================
+       MAIN INVITATION CARD CONTENT
+       =================================================== */
+    .card-body {
+      padding: 30px 22px 50px;
+      text-align: center;
+    }
+
+    .header-icon {
+      color: var(--maroon);
+      margin-bottom: 6px;
+    }
+
+    .traditional-shloka {
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      color: var(--maroon);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .lead-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    /* Couple Names */
+    .couple-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.6rem;
+      color: var(--maroon);
+      line-height: 1.15;
+      margin: 10px 0;
+      text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .ampersand {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--gold-primary);
+      display: block;
+      margin: -10px 0 -5px;
+    }
+
+    /* Traditional Cartoon Illustration Frame */
+    .hero-avatar-box {
+      max-width: 320px;
+      margin: 22px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid #FFF;
+      box-shadow: 0 14px 30px rgba(104, 21, 37, 0.12);
+      background: #eee;
+    }
+
+    .hero-avatar-box img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .family-line {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Primary CTA (Scroll down) */
+    .btn-celebration {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--maroon);
+      color: #fff;
+      padding: 13px 30px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(104, 21, 37, 0.25);
+      transition: all 0.25s ease;
+      margin-bottom: 35px;
+    }
+
+    .btn-celebration:hover {
+      transform: translateY(-2px);
+      background: #500f1c;
+    }
+
+    /* ===================================================
+       CEREMONY & COUNTDOWN CARD
+       =================================================== */
+    .ceremony-card {
+      background: var(--card-white);
+      border-radius: 24px;
+      padding: 30px 20px;
+      border: 1px solid rgba(197, 154, 63, 0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      margin-top: 10px;
+    }
+
+    .ceremony-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--maroon);
+      margin-bottom: 8px;
+    }
+
+    .vow-text {
+      font-family: 'Gayathri', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--maroon);
+      background: #FAF7F0;
+      border-radius: 12px;
+      padding: 14px;
+      margin: 16px 0 24px;
+      font-weight: 700;
+      border-left: 3px solid var(--gold-primary);
+    }
+
+    .date-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .date-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--charcoal);
+    }
+
+    .date-side {
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      line-height: 1.3;
+    }
+
+    /* Countdown Grid */
+    .timer-grid {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+
+    .timer-pill {
+      background: #FAF7F2;
+      border: 1px solid rgba(197, 154, 63, 0.2);
+      border-radius: 12px;
+      padding: 8px 12px;
+      min-width: 65px;
+      text-align: center;
+    }
+
+    .timer-num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--maroon);
+      display: block;
+    }
+
+    .timer-lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .venue-info {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Action Buttons (View on Map & Contact Us) */
+    .actions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-map {
+      background: #FAF7F2;
+      border: 1.5px solid var(--gold-primary);
+      color: var(--charcoal);
+    }
+
+    .btn-map:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-contact {
+      background: var(--maroon);
+      border: 1.5px solid var(--maroon);
+      color: #fff;
+    }
+
+    .btn-contact:hover {
+      background: #500f1c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-screen" id="mainApp">
+    
+    <!-- Top Kerala Kasavu Ribbon -->
+    <div class="kasavu-stripe"></div>
+
+    <!-- ==========================================
+         INTERACTIVE OPENING ENVELOPE MODAL
+         ========================================== -->
+    <div class="envelope-modal" id="envelopeModal">
+      <div class="envelope-wrapper">
+        <div class="envelope-flap" id="envelopeFlap"></div>
+        <div class="wax-seal" id="waxSeal">
+          <span class="seal-monogram">VA</span>
+        </div>
+      </div>
+      <div class="seal-hint">
+        <i data-lucide="sparkles" style="width: 16px; height: 16px; color: var(--gold-primary);"></i>
+        Tap seal to open
+      </div>
+    </div>
+
+    <!-- ==========================================
+         WEDDING INVITATION CARD
+         ========================================== -->
+    <div class="card-body">
+      
+      <div class="traditional-shloka">॥ ഓം ശ്രീ ഗണേശായ നമഃ ॥</div>
+      <div class="lead-title">Join Us For The Wedding</div>
+
+      <!-- Couple Names -->
+      <h1 class="couple-title">
+        Visakh
+        <span class="ampersand">&amp;</span>
+        Arya
+      </h1>
+
+      <!-- Traditional Attire Cartoon Illustration -->
+      <div class="hero-avatar-box">
+        <!-- Replace src with your generated Kerala cartoon image file -->
+        <img src="couple_traditional.png" alt="Visakh and Arya" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=60';" />
+      </div>
+
+      <div class="family-line">
+        <p><strong>Visakh Vijayakumar</strong></p>
+        <p style="font-size: 0.8rem; color: #888;">Son of Late Vijayakumar B &amp; Smt. Sulochana S</p>
+        <p style="margin-top: 8px;"><strong>Arya Narayanan</strong></p>
+        <p style="font-size: 0.8rem; color: #888;">Daughter of Sri. D. Narayanan &amp; Smt. Vahitha P</p>
+      </div>
+
+      <!-- Jump Button -->
+      <button class="btn-celebration" onclick="scrollToCeremony()">
+        Join Our Celebration
+        <i data-lucide="chevron-down" style="width: 18px; height: 18px;"></i>
+      </button>
+
+      <!-- Ceremony & Details Section -->
+      <div class="ceremony-card" id="ceremonySection">
+        <h2 class="ceremony-heading">Wedding Ceremony</h2>
+        
+        <!-- Malayalam Saptapadi Vow -->
+        <div class="vow-text">
+          “നിന്റെ വഴികൾ എന്റെ വഴികൾ, നിന്റെ പ്രിയപ്പെട്ടവർ എന്റെയും...<br/>
+          ഒരുമയോടെ, സപ്തപദികളിലൂടെ അനന്തമായൊരു യാത്രയിലേക്ക്.”
+        </div>
+
+        <div class="date-badge">
+          <div class="date-num">14</div>
+          <div class="date-side">
+            <div>December 2026</div>
+            <div style="color: var(--maroon);">Morning 10:00 AM</div>
+          </div>
+        </div>
+
+        <!-- Live Countdown Timer -->
+        <div class="timer-grid">
+          <div class="timer-pill"><span class="timer-num" id="d">00</span><span class="timer-lbl">Days</span></div>
+          <div class="timer-pill"><span class="timer-num" id="h">00</span><span class="timer-lbl">Hours</span></div>
+          <div class="timer-pill"><span class="timer-num" id="m">00</span><span class="timer-lbl">Mins</span></div>
+          <div class="timer-pill"><span class="timer-num" id="s">00</span><span class="timer-lbl">Secs</span></div>
+        </div>
+
+        <!-- Venue details -->
+        <div class="venue-info">
+          <p style="font-weight: 700; color: var(--maroon); font-size: 1.05rem;">Attukal Bhagavathy Temple</p>
+          <p style="color: var(--muted); font-size: 0.88rem;">Manacaud, Thiruvananthapuram, Kerala</p>
+          <p style="color: var(--gold-deep); font-size: 0.82rem; font-weight: 600; margin-top: 6px;">
+            Followed by Traditional Kerala Sadya
+          </p>
+        </div>
+
+        <!-- Exact Actionable Buttons from the Video -->
+        <div class="actions-list">
+          <a href="https://maps.google.com/?q=Attukal+Bhagavathy+Temple+Thiruvananthapuram" target="_blank" class="action-btn btn-map">
+            <i data-lucide="map-pin" style="width: 18px; height: 18px; color: var(--gold-primary);"></i>
+            View on Map
+          </a>
+
+          <!-- Opens phone dialer directly -->
+          <a href="tel:+919876543210" class="action-btn btn-contact">
+            <i data-lucide="phone-call" style="width: 18px; height: 18px;"></i>
+            Contact Us
+          </a>
+        </div>
+
+        <p style="font-size: 0.8rem; color: #999; margin-top: 25px;">
+          We request the honor of your presence and blessings.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // 1. Envelope opening animation
+    const waxSeal = document.getElementById('waxSeal');
+    const flap = document.getElementById('envelopeFlap');
+    const modal = document.getElementById('envelopeModal');
+
+    waxSeal.addEventListener('click', () => {
+      flap.classList.add('flip-open');
+      setTimeout(() => {
+        modal.classList.add('opened');
+      }, 400);
+    });
+
+    // 2. Smooth scroll to ceremony details
+    function scrollToCeremony() {
+      document.getElementById('ceremonySection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 3. Live countdown to 14th Dec 2026, 10:00 AM IST
+    const targetDate = new Date("December 14, 2026 10:00:00").getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('d').innerText = "00";
+        document.getElementById('h').innerText = "00";
+        document.getElementById('m').innerText = "00";
+        document.getElementById('s').innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('d').innerText = String(days).padStart(2, '0');
+      document.getElementById('h').innerText = String(hours).padStart(2, '0');
+      document.getElementById('m').innerText = String(mins).padStart(2, '0');
+      document.getElementById('s').innerText = String(secs).padStart(2, '0');
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>

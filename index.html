@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>വിശാഖ് & ആര്യ | Visakh & Arya — Wedding Invitation</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;800;900&family=Gayathri:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Rozha+One&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Canvas Confetti for Blessings Lamp -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kasavu: '#C59A3F',
+            kasavulight: '#F7E7B4',
+            kasavudark: '#8D6B1B',
+            maroon: '#6B1D2F',
+            deepmaroon: '#4D1220',
+            creambg: '#FCFAF5',
+            creamcard: '#FFFFFF',
+            tealaccent: '#18473F',
+            templegold: '#E5B94E',
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            cinzelDeco: ['Cinzel Decorative', 'serif'],
+            malayalam: ['Gayathri', 'sans-serif'],
+            rozha: ['Rozha One', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --gold-line: rgba(197, 154, 63, 0.45);
+      --gold-glow: rgba(229, 185, 78, 0.6);
+      --maroon: #6B1D2F;
+    }
+
+    /* Kasavu Zari Ribbon */
+    .kasavu-border {
+      background: linear-gradient(90deg, 
+        #6B1D2F 0%, 
+        #C59A3F 15%, 
+        #FFF4D0 25%, 
+        #C59A3F 35%, 
+        #8D6B1B 50%, 
+        #C59A3F 65%, 
+        #FFF4D0 75%, 
+        #C59A3F 85%, 
+        #6B1D2F 100%
+      );
+      height: 7px;
+    }
+
+    body {
+      background-color: #FCFAF5;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(197, 154, 63, 0.08) 0%, transparent 60%),
+        radial-gradient(rgba(107, 29, 47, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 28px 28px;
+      color: #2F2A28;
+      overflow-x: hidden;
+    }
+
+    /* Preloader Animation */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #FFFDF9;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .preloader-glow {
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { filter: drop-shadow(0 0 10px rgba(197,154,63,0.3)); transform: scale(0.98); }
+      to { filter: drop-shadow(0 0 25px rgba(229,185,78,0.7)); transform: scale(1.02); }
+    }
+
+    /* Rotating Scroll Reactive Mandalas */
+    .mandala-bg {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+      transition: transform 0.1s linear;
+    }
+
+    /* Golden Shimmer Animation */
+    @keyframes shimmerGold {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .gold-shimmer {
+      background: linear-gradient(90deg, #997322 0%, #E5B94E 30%, #FFF4D0 50%, #E5B94E 70%, #997322 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerGold 6s linear infinite;
+    }
+
+    @keyframes flameFlicker {
+      0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; filter: drop-shadow(0 0 10px #FFAA00) drop-shadow(0 0 25px rgba(255, 170, 0, 0.8)); }
+      25% { transform: scale(1.08, 0.95) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 14px #FF8800) drop-shadow(0 0 32px rgba(255, 136, 0, 0.9)); }
+      50% { transform: scale(0.96, 1.05) rotate(-2deg); opacity: 0.92; filter: drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 20px rgba(255, 215, 0, 0.7)); }
+      75% { transform: scale(1.04, 1.02) rotate(1deg); opacity: 0.98; filter: drop-shadow(0 0 16px #FF6600) drop-shadow(0 0 36px rgba(255, 102, 0, 0.95)); }
+    }
+
+    .lamp-flame {
+      transform-origin: bottom center;
+      animation: flameFlicker 1.8s ease-in-out infinite alternate;
+    }
+
+    #petals-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(197, 154, 63, 0.35);
+      box-shadow: 0 12px 35px -8px rgba(107, 29, 47, 0.08), 0 4px 12px rgba(197, 154, 63, 0.06);
+    }
+  </style>
+</head>
+
+<body class="relative min-h-screen text-slate-800 antialiased selection:bg-kasavulight selection:text-maroon">
+
+  <!-- Auspicious Preloader -->
+  <div id="preloader">
+    <div class="text-center preloader-glow p-6">
+      <!-- Sacred Om / Ganapati Symbol -->
+      <div class="relative w-24 h-24 mx-auto mb-4 flex items-center justify-center rounded-full bg-amber-50 border border-kasavu/40">
+        <span class="font-malayalam text-4xl font-bold text-maroon">ഓം</span>
+      </div>
+      <h3 class="font-cinzel text-xl md:text-2xl font-bold text-slate-900 tracking-wider">
+        Visakh &amp; Arya
+      </h3>
+      <p class="font-malayalam text-sm text-maroon font-semibold mt-1">
+        മംഗള മുഹൂർത്തത്തിലേക്ക് സ്വാഗതം...
+      </p>
+      <!-- Gold Loading Bar -->
+      <div class="w-48 h-1 bg-amber-100 rounded-full mx-auto mt-4 overflow-hidden">
+        <div class="h-full bg-gradient-to-r from-kasavu via-templegold to-maroon rounded-full animate-[shimmerGold_1.5s_infinite]"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Falling Flower Petals Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- Left Rotating Background Mandala -->
+  <svg id="mandala-left" class="mandala-bg -top-24 -left-32 w-[340px] md:w-[480px] h-[340px] md:h-[480px] text-[#C59A3F]" viewBox="0 0 500 500" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="250" cy="250" r="235" stroke-dasharray="6,6"/>
+    <circle cx="250" cy="250" r="190"/>
+    <circle cx="250" cy="250" r="140" stroke-dasharray="4,4"/>
+    <circle cx="250" cy="250" r="85"/>
+    <g transform="translate(250,250)">
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(30)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(60)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(90)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(120)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(150)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(180)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(210)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(240)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(270)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(300)" fill="none"/>
+      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(330)" fill="none"/>
+    </g>
+  </svg>
+
+  <!-- Right Rotating Background Mandala -->
+  <svg id="mandala-right" class="mandala-bg top-[45%] -right-36 w-[360px] md:w-[540px] h-[360px] md:h-[540px] text-[#C59A3F]" viewBox="0 0 500 500" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="250" cy="250" r="235" stroke-dasharray="8,8"/>
+    <circle cx="250" cy="250" r="180"/>
+    <circle cx="250" cy="250" r="110"/>
+    <circle cx="250" cy="250" r="50"/>
+    <g transform="translate(250,250)">
+      <polygon points="0,-210 50,-100 190,-90 85,-10 130,120 0,60 -130,120 -85,-10 -190,-90 -50,-100" stroke-width="1.2"/>
+      <polygon points="0,210 50,100 190,90 85,10 130,-120 0,-60 -130,-120 -85,10 -190,90 -50,100" stroke-width="1.2" transform="rotate(45)"/>
+    </g>
+  </svg>
+
+  <!-- Top Kasavu Ribbon Header -->
+  <div class="kasavu-border sticky top-0 z-40"></div>
+
+  <!-- Audio Floating Controller -->
+  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+    <button id="audio-btn" class="flex items-center gap-2 bg-maroon hover:bg-deepmaroon text-white text-xs md:text-sm font-medium px-4 py-2.5 rounded-full shadow-xl border border-kasavulight/40 transition-all duration-300 hover:scale-105" title="Play Temple Ambient Drone">
+      <i id="audio-icon" data-lucide="music" class="w-4 h-4 text-kasavulight"></i>
+      <span id="audio-text">പ്രണവ മന്ത്രം • Music</span>
+    </button>
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-14">
+    
+    <!-- Sacred Invocation Header -->
+    <header class="text-center space-y-4">
+      <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-amber-50/80 border border-kasavu/30 text-maroon text-xs sm:text-sm font-semibold tracking-wider shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-kasavu animate-ping"></span>
+        <span>ഓം ശ്രീ ഗണേശായ നമഃ</span>
+        <span class="text-kasavu">•</span>
+        <span>ആറ്റുകാലമ്മേ ശരണം</span>
+      </div>
+
+      <!-- Intricate Golden Line Ganapati Vector Motif -->
+      <div class="flex justify-center my-4">
+        <div class="relative group p-4 rounded-full bg-gradient-to-b from-amber-50 to-orange-50/30 border border-kasavu/30 shadow-inner">
+          <svg class="w-20 h-24 md:w-24 md:h-28 text-kasavu filter drop-shadow-[0_2px_12px_rgba(197,154,63,0.45)] transition-transform duration-500 hover:scale-105" viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M38 22 L50 8 L62 22 Z" fill="#FBF3DC" stroke="#C59A3F" stroke-width="2"/>
+            <path d="M30 22 Q50 16 70 22" />
+            <circle cx="50" cy="14" r="2.5" fill="#6B1D2F" stroke="none"/>
+            <path d="M48 24 Q36 28 34 38 Q32 48 42 54 Q54 60 54 70 Q54 84 44 88 Q34 92 28 82 Q25 78 28 72" stroke="#B8860B" stroke-width="3"/>
+            <circle cx="26" cy="74" r="3.5" fill="#E5B94E" stroke="#8D6B1B" stroke-width="1"/>
+            <path d="M66 28 Q84 28 84 46 Q84 62 66 64" />
+            <path d="M68 36 Q78 38 76 52" stroke-dasharray="2,3" stroke-width="1.5"/>
+            <path d="M34 28 Q18 28 18 46 Q18 56 28 62" />
+            <path d="M52 34 Q58 35 60 38" stroke-width="2.5"/>
+            <line x1="44" y1="28" x2="56" y2="28" stroke="#6B1D2F" stroke-width="1.8"/>
+            <line x1="45" y1="31" x2="55" y2="31" stroke="#E5B94E" stroke-width="1.8"/>
+            <circle cx="50" cy="35" r="1.8" fill="#6B1D2F" stroke="none"/>
+            <path d="M42 58 L37 63" stroke-width="3" stroke="#FFF" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="max-w-xl mx-auto text-center space-y-1 text-slate-700">
+        <p class="font-malayalam text-sm sm:text-base font-bold text-maroon tracking-wide">
+          “ വക്രതുണ്ഡ മഹാകായ സൂര്യകോടി സമപ്രഭ ।<br class="sm:hidden" /> നിർവിഘ്നം കുരു മേ ദേവ സർവ്വകാര്യേഷു സർവ്വദാ ॥ ”
+        </p>
+        <p class="font-cinzel text-xs text-muted tracking-widest text-amber-900/80 uppercase">
+          Divine Blessings of Lord Ganesha &amp; Attukal Bhagavathy
+        </p>
+      </div>
+
+      <div class="pt-3 pb-1">
+        <p class="font-serif uppercase tracking-[0.25em] text-xs md:text-sm text-kasavudark font-bold">
+          With the blessings of our elders and almighty
+        </p>
+        <p class="text-sm md:text-base text-slate-600 font-light mt-1 max-w-2xl mx-auto">
+          We cordially invite you with family and friends to share in our joy as we enter the sacred bond of matrimony.
+        </p>
+      </div>
+    </header>
+
+    <main class="mt-8 space-y-12">
+      
+      <!-- Hero Couple Banner Card -->
+      <section class="glass-card rounded-3xl p-6 sm:p-10 md:p-14 text-center relative overflow-hidden">
+        
+        <div class="space-y-4">
+          <span class="inline-block font-cinzel text-xs md:text-sm font-semibold tracking-[0.35em] text-maroon uppercase border-b border-kasavu/50 pb-1">
+            Matrimony
+          </span>
+          
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-rozha text-slate-900 tracking-tight leading-tight">
+            <span class="gold-shimmer">Visakh</span>
+            <span class="block sm:inline font-cinzelDeco text-2xl sm:text-4xl md:text-5xl text-maroon mx-2 my-1 sm:my-0 font-normal">&amp;</span>
+            <span class="gold-shimmer">Arya</span>
+          </h1>
+
+          <div class="font-malayalam text-xl sm:text-2xl font-bold text-slate-800 tracking-wide pt-1">
+            വിശാഖ് & ആര്യ
+          </div>
+        </div>
+
+        <!-- Hero Cartoon Illustration -->
+        <div class="max-w-xs sm:max-w-sm mx-auto my-6 rounded-2xl overflow-hidden border-4 border-amber-100 shadow-xl">
+          <img 
+            src="couple_traditional.png" 
+            alt="Visakh & Arya Traditional Attire" 
+            class="w-full h-auto object-cover"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=60';" 
+          />
+        </div>
+
+        <!-- Traditional Saptapadi / Wedding Vow -->
+        <div class="relative max-w-2xl mx-auto my-6 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-amber-50/70 via-amber-100/40 to-amber-50/70 border-y-2 border-kasavu/40 shadow-sm">
+          <i data-lucide="quote" class="w-8 h-8 text-kasavu/40 mx-auto mb-2 rotate-180"></i>
+          <p class="font-malayalam text-base sm:text-lg md:text-xl font-bold text-maroon leading-relaxed">
+            “നിന്റെ വഴികൾ എന്റെ വഴികൾ, നിന്റെ ഹൃദയമിടിപ്പുകൾ എന്റെ പ്രാർത്ഥനകൾ, നിന്റെ പ്രിയപ്പെട്ടവർ എന്റെയും... ഒരുമയോടെ, സപ്തപദികളിലൂടെ അനന്തമായൊരു ദാമ്പത്യത്തിലേക്ക്.”
+          </p>
+          <div class="mt-4 pt-3 border-t border-kasavu/30 text-xs sm:text-sm text-slate-600 font-sans italic">
+            “Where you walk, I shall walk; your people shall be my people, and your prayers my own. Together, hand in hand, seven sacred steps into eternity.”
+          </div>
+        </div>
+
+        <!-- Date & Star Info Pill -->
+        <div class="inline-flex flex-wrap justify-center items-center gap-3 bg-white/90 border border-kasavu/40 px-5 py-2.5 rounded-full shadow-sm text-slate-700 font-medium text-xs sm:text-sm">
+          <span class="flex items-center gap-1.5 text-maroon font-bold">
+            <i data-lucide="calendar" class="w-4 h-4 text-kasavu"></i>
+            14th December 2026, Monday
+          </span>
+          <span class="text-kasavu">•</span>
+          <span class="flex items-center gap-1.5">
+            <i data-lucide="clock" class="w-4 h-4 text-kasavu"></i>
+            മുഹൂർത്തം : 10:00 AM
+          </span>
+          <span class="text-kasavu">•</span>
+          <span class="bg-amber-100 text-maroon px-2 py-0.5 rounded-md text-[11px] font-bold">
+            മകയിരം / Makayiram
+          </span>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="mt-8 max-w-xl mx-auto">
+          <p class="text-xs uppercase tracking-[0.2em] font-semibold text-slate-500 mb-4">
+            Auspicious Moment In
+          </p>
+          <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+            <div class="bg-gradient-to-b from-white to-amber-50/50 p-3 sm:p-4 rounded-xl border border-kasavu/30 shadow-sm">
+              <span id="days" class="block font-cinzel text-2xl sm:text-4xl font-extrabold text-maroon">00</span>
+              <span class="text-[10px] sm:text-xs font-semibold uppercase text-slate-500 tracking-wider">Days</span>
+            </div>
+            <div class="bg-gradient-to-b from-white to-amber-50/50 p-3 sm:p-4 rounded-xl border border-kasavu/30 shadow-sm">
+              <span id="hours" class="block font-cinzel text-2xl sm:text-4xl font-extrabold text-maroon">00</span>
+              <span class="text-[10px] sm:text-xs font-semibold uppercase text-slate-500 tracking-wider">Hours</span>
+            </div>
+            <div class="bg-gradient-to-b from-white to-amber-50/50 p-3 sm:p-4 rounded-xl border border-kasavu/30 shadow-sm">
+              <span id="mins" class="block font-cinzel text-2xl sm:text-4xl font-extrabold text-maroon">00</span>
+              <span class="text-[10px] sm:text-xs font-semibold uppercase text-slate-500 tracking-wider">Minutes</span>
+            </div>
+            <div class="bg-gradient-to-b from-white to-amber-50/50 p-3 sm:p-4 rounded-xl border border-kasavu/30 shadow-sm">
+              <span id="secs" class="block font-cinzel text-2xl sm:text-4xl font-extrabold text-maroon">00</span>
+              <span class="text-[10px] sm:text-xs font-semibold uppercase text-slate-500 tracking-wider">Seconds</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Family Particulars -->
+      <section class="space-y-6">
+        <div class="text-center">
+          <div class="inline-flex items-center gap-2 text-kasavudark text-xs uppercase tracking-widest font-bold">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Two Hearts • Two Families</span>
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          </div>
+          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900 mt-1">വരനും വധുവും</h2>
+          <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-kasavu to-transparent mx-auto mt-2"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <!-- Groom Family Card -->
+          <div class="glass-card rounded-2xl p-6 sm:p-8 relative border-t-4 border-t-kasavu hover:shadow-xl transition-all duration-300">
+            <span class="inline-block bg-amber-100 text-maroon text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+              The Groom • വരൻ
+            </span>
+            <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900">Visakh Vijayakumar</h3>
+            <p class="font-malayalam text-lg font-bold text-kasavudark">വിശാഖ് വിജയകുമാർ</p>
+            
+            <div class="mt-4 space-y-2 text-sm text-slate-600">
+              <p>
+                Son of <strong class="text-slate-800">Late Vijayakumar B</strong> &amp; <strong class="text-slate-800">Smt. Sulochana S</strong>
+              </p>
+              <p class="font-malayalam text-xs text-slate-500">
+                പരേതനായ വിജയകുമാർ ബി., സുലോചന എസ്. ദമ്പതികളുടെ മകൻ
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-dashed border-kasavu/30 flex items-start gap-3 text-slate-700 text-sm">
+              <div class="p-2 rounded-full bg-amber-50 border border-kasavu/30 text-kasavu shrink-0 mt-0.5">
+                <i data-lucide="home" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-800">Sulubhavanam</p>
+                <p>Kodumon, Pathanamthitta — 691555</p>
+                <p class="font-malayalam text-xs text-slate-500 mt-0.5">സുലുഭവനം, കൊടുമൺ, പത്തനംതിട്ട</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bride Family Card -->
+          <div class="glass-card rounded-2xl p-6 sm:p-8 relative border-t-4 border-t-maroon hover:shadow-xl transition-all duration-300">
+            <span class="inline-block bg-rose-100 text-maroon text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+              The Bride • വധു
+            </span>
+            <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900">Arya Narayanan</h3>
+            <p class="font-malayalam text-lg font-bold text-maroon">ആര്യ നാരായണൻ</p>
+            
+            <div class="mt-4 space-y-2 text-sm text-slate-600">
+              <p>
+                Daughter of <strong class="text-slate-800">Sri. D. Narayanan</strong> &amp; <strong class="text-slate-800">Smt. Vahitha P</strong>
+              </p>
+              <p class="font-malayalam text-xs text-slate-500">
+                ഡി. നാരായണൻ, വാഹിത പി. ദമ്പതികളുടെ മകൾ
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-dashed border-kasavu/30 flex items-start gap-3 text-slate-700 text-sm">
+              <div class="p-2 rounded-full bg-rose-50 border border-maroon/20 text-maroon shrink-0 mt-0.5">
+                <i data-lucide="home" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-800">Tagore Gardens</p>
+                <p>Kumarapuram, Thiruvananthapuram — 695011</p>
+                <p class="font-malayalam text-xs text-slate-500 mt-0.5">ടാഗോർ ഗാർഡൻസ്, കുമാരപുരം, തിരുവനന്തപുരം</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Digital Lamp Blessing -->
+      <section class="glass-card rounded-3xl p-6 sm:p-10 text-center border-2 border-kasavu/40 bg-gradient-to-b from-amber-50/40 via-white to-amber-50/20 shadow-md">
+        <div class="max-w-xl mx-auto space-y-3">
+          <span class="bg-amber-200/60 text-amber-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+            മംഗള ദീപം • Digital Blessing
+          </span>
+          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-maroon">Light the Auspicious Lamp</h2>
+          <p class="text-sm text-slate-600">
+            Join hands with us in invoking divine light and peace. Click to light the sacred Nilavilakku and shower your blessings upon Visakh &amp; Arya.
+          </p>
+
+          <div class="py-6 flex flex-col items-center justify-center">
+            <div class="relative cursor-pointer select-none transition-transform active:scale-95" id="lamp-container" onclick="lightLamp()">
+              <div id="flame-group" class="lamp-flame transition-opacity duration-700 opacity-100 flex flex-col items-center">
+                <div class="w-10 h-10 -mb-6 rounded-full bg-amber-400/40 filter blur-md pointer-events-none"></div>
+                <svg class="w-7 h-12" viewBox="0 0 30 60" fill="none">
+                  <path d="M15 0 C22 20 28 35 28 46 C28 54 22 60 15 60 C8 60 2 54 2 46 C2 35 8 20 15 0 Z" fill="url(#flameGrad)" />
+                  <path d="M15 15 C19 28 22 38 22 46 C22 51 19 55 15 55 C11 55 8 51 8 46 C8 38 11 28 15 15 Z" fill="#FFF8C4" />
+                  <defs>
+                    <linearGradient id="flameGrad" x1="15" y1="0" x2="15" y2="60" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FFF5B8" />
+                      <stop offset="0.3" stop-color="#FFB300" />
+                      <stop offset="0.75" stop-color="#FF5722" />
+                      <stop offset="1" stop-color="#D50000" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <!-- Nilavilakku Brass Lamp -->
+              <svg class="w-24 h-48 md:w-28 md:h-52 text-amber-600 filter drop-shadow-md" viewBox="0 0 100 200" fill="none">
+                <path d="M48 20 L50 12 L52 20 Z" fill="#C59A3F" stroke="#8D6B1B" stroke-width="1.5"/>
+                <ellipse cx="50" cy="24" rx="14" ry="4" fill="#E5B94E" stroke="#8D6B1B" stroke-width="1.5"/>
+                <ellipse cx="50" cy="30" rx="28" ry="7" fill="#C59A3F" stroke="#8D6B1B" stroke-width="1.5"/>
+                <path d="M22 30 Q50 42 78 30 Q50 36 22 30 Z" fill="#997322"/>
+                <rect x="46" y="37" width="8" height="12" rx="2" fill="#E5B94E" stroke="#8D6B1B" stroke-width="1"/>
+                <ellipse cx="50" cy="54" rx="12" ry="4" fill="#C59A3F" stroke="#8D6B1B" stroke-width="1.2"/>
+                <path d="M44 58 Q42 85 45 110 Q50 115 55 110 Q58 85 56 58 Z" fill="#D4AF37" stroke="#8D6B1B" stroke-width="1.5"/>
+                <ellipse cx="50" cy="85" rx="10" ry="4" fill="#E5B94E" stroke="#8D6B1B"/>
+                <ellipse cx="50" cy="115" rx="16" ry="5" fill="#C59A3F" stroke="#8D6B1B" stroke-width="1.5"/>
+                <rect x="45" y="120" width="10" height="18" fill="#E5B94E" stroke="#8D6B1B"/>
+                <path d="M30 138 Q50 132 70 138 L82 178 Q50 185 18 178 Z" fill="#C59A3F" stroke="#8D6B1B" stroke-width="2"/>
+                <ellipse cx="50" cy="180" rx="36" ry="9" fill="#997322" stroke="#6B1D2F" stroke-width="2"/>
+                <ellipse cx="50" cy="155" rx="26" ry="6" stroke="#FFF4D0" stroke-width="1"/>
+              </svg>
+            </div>
+
+            <button onclick="lightLamp()" class="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white font-bold px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95">
+              <i data-lucide="flame" class="w-4 h-4 text-amber-200"></i>
+              <span id="light-btn-text">ദീപം തെളിയിക്കൂ • Shower Blessings</span>
+            </button>
+            <p class="text-xs text-slate-500 mt-2 font-medium">
+              <span id="blessing-count" class="font-bold text-maroon text-sm">348</span> lamps lit with prayers today
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Venue & Timing -->
+      <section class="glass-card rounded-3xl p-6 sm:p-10 md:p-12 relative overflow-hidden border-2 border-kasavu/50">
+        <div class="text-center max-w-2xl mx-auto space-y-4">
+          <span class="inline-block bg-maroon text-kasavulight text-xs uppercase font-bold tracking-[0.25em] px-4 py-1.5 rounded-full shadow-sm">
+            വിവാഹ മുഹൂർത്തം &amp; വേദി
+          </span>
+
+          <h2 class="font-cinzel text-3xl sm:text-4xl font-extrabold text-slate-900">
+            Attukal Bhagavathy Temple
+          </h2>
+          <p class="font-malayalam text-xl font-bold text-maroon">
+            ആറ്റുകാൽ ഭഗവതി ക്ഷേത്രം, തിരുവനന്തപുരം
+          </p>
+          <p class="text-slate-600 text-sm sm:text-base">
+            Manacaud, Thiruvananthapuram, Kerala — 695009
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6 text-left">
+            <div class="p-4 rounded-xl bg-amber-50/70 border border-kasavu/30 flex items-start gap-3">
+              <div class="p-2.5 rounded-lg bg-maroon text-kasavulight shrink-0">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-cinzel font-bold text-slate-800 text-sm">Auspicious Muhurtham</p>
+                <p class="text-xs text-slate-600 mt-0.5">14th December 2026, 10:00 AM</p>
+                <p class="font-malayalam text-xs text-maroon font-bold mt-1">രാവിലെ 10:00 മണിക്ക് താലികെട്ട്</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-amber-50/70 border border-kasavu/30 flex items-start gap-3">
+              <div class="p-2.5 rounded-lg bg-tealaccent text-white shrink-0">
+                <i data-lucide="utensils" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-cinzel font-bold text-slate-800 text-sm">Traditional Sadya (സദ്യ)</p>
+                <p class="text-xs text-slate-600 mt-0.5">Followed immediately at the Auditorium</p>
+                <p class="font-malayalam text-xs text-tealaccent font-bold mt-1">വിഭവസമൃദ്ധമായ കല്യാണസദ്യ</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <a href="https://maps.google.com/?q=Attukal+Bhagavathy+Temple,+Manacaud,+Thiruvananthapuram" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-maroon hover:bg-deepmaroon text-white font-semibold text-sm px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+              <i data-lucide="map-pin" class="w-4 h-4 text-kasavulight"></i>
+              <span>Get Directions / Google Maps</span>
+            </a>
+
+            <a id="cal-link" href="#" onclick="addToCalendar(event)" class="inline-flex items-center gap-2 bg-white hover:bg-amber-50/80 text-slate-800 border border-kasavu font-semibold text-sm px-6 py-3 rounded-full shadow-sm hover:shadow transition-all duration-300">
+              <i data-lucide="calendar-plus" class="w-4 h-4 text-kasavudark"></i>
+              <span>Add to Calendar</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery with Linked Images -->
+      <section class="space-y-6">
+        <div class="text-center">
+          <span class="text-xs font-bold uppercase tracking-widest text-kasavudark">Portraits of Love</span>
+          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900 mt-1">ചിത്ര ശില്പങ്ങൾ • The Gallery</h2>
+          <div class="w-20 h-0.5 bg-kasavu/50 mx-auto mt-2"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Portrait 1: Traditional Attire -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-kasavu/40 group hover:shadow-xl transition-all">
+            <div class="relative h-80 bg-slate-100 overflow-hidden">
+              <img 
+                src="couple_traditional.png" 
+                alt="Traditional Attire Portrait" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=60';"
+              />
+              <div class="absolute bottom-3 inset-x-0 px-4 text-center">
+                <span class="inline-block bg-white/95 text-maroon text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+                  Traditional Kerala Mundu &amp; Saree
+                </span>
+              </div>
+            </div>
+            <div class="p-4 text-center">
+              <h4 class="font-cinzel font-bold text-sm text-slate-800">ഐശ്വര്യം • Temple Kasavu</h4>
+              <p class="text-xs text-slate-500 mt-1">Draped in tradition, pure gold zari borders and temple blooms.</p>
+            </div>
+          </div>
+
+          <!-- Portrait 2: Evening Garden Theme -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-kasavu/40 group hover:shadow-xl transition-all">
+            <div class="relative h-80 bg-slate-100 overflow-hidden">
+              <img 
+                src="couple_garden.png" 
+                alt="Evening Garden Theme Portrait" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop&q=60';"
+              />
+              <div class="absolute bottom-3 inset-x-0 px-4 text-center">
+                <span class="inline-block bg-white/95 text-tealaccent text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+                  Evening Garden Theme
+                </span>
+              </div>
+            </div>
+            <div class="p-4 text-center">
+              <h4 class="font-cinzel font-bold text-sm text-slate-800">സന്ധ്യാ രാഗം • Evening Elegance</h4>
+              <p class="text-xs text-slate-500 mt-1">Deep teal sari, sherwani &amp; fairy-lit floral gazebos.</p>
+            </div>
+          </div>
+
+          <!-- Portrait 3: Shadowbox Keepsake -->
+          <div class="glass-card rounded-2xl overflow-hidden border border-kasavu/40 group hover:shadow-xl transition-all">
+            <div class="relative h-80 bg-slate-100 overflow-hidden">
+              <img 
+                src="couple_framed.png" 
+                alt="3D Shadowbox Art Portrait" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=60';"
+              />
+              <div class="absolute bottom-3 inset-x-0 px-4 text-center">
+                <span class="inline-block bg-white/95 text-amber-900 text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+                  Handcrafted Caricature Art
+                </span>
+              </div>
+            </div>
+            <div class="p-4 text-center">
+              <h4 class="font-cinzel font-bold text-sm text-slate-800">സ്മൃതി • The 3D Shadowbox</h4>
+              <p class="text-xs text-slate-500 mt-1">A timeless keepsake capturing smile, laughter and love.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Virtual Guestbook -->
+      <section class="glass-card rounded-3xl p-6 sm:p-10 border-2 border-kasavu/40 relative">
+        <div class="text-center max-w-xl mx-auto space-y-2">
+          <span class="bg-amber-100 text-maroon text-xs uppercase font-bold tracking-widest px-3 py-1 rounded-full">
+            പ്രാർത്ഥനകളും ആശംസകളും
+          </span>
+          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900">Virtual Guestbook &amp; Wishes</h2>
+          <p class="text-xs sm:text-sm text-slate-600">
+            Pen your blessings, congratulations, and affectionate wishes for the bride and groom.
+          </p>
+        </div>
+
+        <form id="wish-form" onsubmit="submitWish(event)" class="max-w-xl mx-auto mt-6 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Your Name • പേര്</label>
+              <input type="text" id="guest-name" required placeholder="e.g. Radhakrishnan Nair" class="w-full px-4 py-2.5 rounded-xl border border-kasavu/40 focus:outline-none focus:ring-2 focus:ring-kasavu text-sm bg-white/90" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">From / Location • സ്ഥലം</label>
+              <input type="text" id="guest-city" placeholder="e.g. Trivandrum / Kodumon" class="w-full px-4 py-2.5 rounded-xl border border-kasavu/40 focus:outline-none focus:ring-2 focus:ring-kasavu text-sm bg-white/90" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Blessing Message • ആശംസ</label>
+            <textarea id="guest-message" required rows="3" placeholder="May your lives together be blessed with endless happiness, peace and prosperity..." class="w-full px-4 py-2.5 rounded-xl border border-kasavu/40 focus:outline-none focus:ring-2 focus:ring-kasavu text-sm bg-white/90"></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="inline-flex items-center gap-2 bg-maroon hover:bg-deepmaroon text-white font-semibold text-sm px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+              <i data-lucide="send" class="w-4 h-4 text-kasavulight"></i>
+              <span>Send Your Blessings</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="mt-10 pt-6 border-t border-kasavu/30 max-w-2xl mx-auto">
+          <h4 class="text-xs uppercase font-bold text-slate-500 tracking-wider text-center mb-4">Heartfelt Messages</h4>
+          <div id="wishes-list" class="space-y-3 max-h-72 overflow-y-auto pr-2">
+            <div class="p-3.5 rounded-xl bg-amber-50/70 border border-kasavu/20 text-xs sm:text-sm">
+              <div class="flex justify-between font-bold text-maroon mb-1">
+                <span>മുത്തശ്ശിയും കുടുംബവും</span>
+                <span class="text-[11px] text-slate-400">Blessings</span>
+              </div>
+              <p class="text-slate-700">“ആറ്റുകാലമ്മയുടെ അനുഗ്രഹം എന്നും നിങ്ങളുടെ ദാമ്പത്യത്തിൽ ഉണ്ടാകട്ടെ. ഹൃദയം നിറഞ്ഞ വിവാഹമംഗളാശംസകൾ!”</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 text-center space-y-6 pb-12">
+      <div class="flex items-center justify-center gap-4 text-kasavu">
+        <div class="h-0.5 w-16 bg-gradient-to-r from-transparent to-kasavu"></div>
+        <svg class="w-6 h-6 text-kasavu" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" />
+        </svg>
+        <div class="h-0.5 w-16 bg-gradient-to-l from-transparent to-kasavu"></div>
+      </div>
+
+      <div class="max-w-xl mx-auto px-4">
+        <p class="font-malayalam text-base sm:text-lg font-bold text-maroon leading-relaxed">
+          “ സർവ്വമംഗള മാംഗല്യേ ശിവേ സർവ്വാർത്ഥ സാധികേ ।<br />
+          ശരണ്യേ ത്ര്യംബകേ ഗൗരീ നാരായണീ നമോസ്തുതേ ॥ ”
+        </p>
+        <p class="text-xs text-slate-500 font-serif italic mt-2">
+          May the divine grace of Goddess Attukal Bhagavathy bless this sacred union forever.
+        </p>
+      </div>
+
+      <div class="space-y-1 text-xs text-slate-600">
+        <p class="font-semibold text-slate-800">With Best Compliments &amp; Prayers from</p>
+        <p>Vijayakumar Family, Sulubhavanam &amp; Narayanan Family, Tagore Gardens</p>
+        <p class="text-kasavudark font-bold pt-2">#VisakhWedsArya • 14 December 2026</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <div class="kasavu-border"></div>
+
+  <script>
+    // Remove Preloader after page loads
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => { preloader.style.display = 'none'; }, 800);
+        }, 500);
+      }
+    });
+
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Scroll-Reactive Mandalas
+    const mandalaLeft = document.getElementById('mandala-left');
+    const mandalaRight = document.getElementById('mandala-right');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      if (mandalaLeft) mandalaLeft.style.transform = `rotate(${scrollY * 0.08}deg)`;
+      if (mandalaRight) mandalaRight.style.transform = `rotate(-${scrollY * 0.07}deg)`;
+    }, { passive: true });
+
+    // 2. Falling Petals
+    const canvas = document.getElementById('petals-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const petalCount = 28;
+    const petals = [];
+    const petalColors = [
+      { r: 235, g: 155, b: 20 },
+      { r: 250, g: 198, b: 38 },
+      { r: 255, g: 252, b: 242 },
+      { r: 240, g: 100, b: 80 }
+    ];
+
+    for (let i = 0; i < petalCount; i++) {
+      petals.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 7 + 5,
+        dx: Math.random() * 1.2 - 0.6,
+        dy: Math.random() * 1.5 + 0.8,
+        color: petalColors[Math.floor(Math.random() * petalColors.length)],
+        angle: Math.random() * Math.PI * 2,
+        angularSpeed: (Math.random() - 0.5) * 0.03,
+        opacity: Math.random() * 0.6 + 0.35
+      });
+    }
+
+    function animatePetals() {
+      ctx.clearRect(0, 0, width, height);
+      petals.forEach(p => {
+        p.x += p.dx;
+        p.y += p.dy;
+        p.angle += p.angularSpeed;
+
+        if (p.y > height + 20) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+        if (p.x > width + 20) p.x = -20;
+        if (p.x < -20) p.x = width + 20;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle);
+        ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity})`;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.r * 1.4, p.r * 0.8, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+      requestAnimationFrame(animatePetals);
+    }
+    animatePetals();
+
+    // 3. Countdown Timer
+    const weddingDate = new Date("December 14, 2026 10:00:00 GMT+0530").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("mins").innerText = "00";
+        document.getElementById("secs").innerText = "00";
+        return;
+      }
+
+      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = String(d).padStart(2, '0');
+      document.getElementById("hours").innerText = String(h).padStart(2, '0');
+      document.getElementById("mins").innerText = String(m).padStart(2, '0');
+      document.getElementById("secs").innerText = String(s).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 4. Interactive Lamp
+    let lampsCount = 348;
+    function lightLamp() {
+      lampsCount++;
+      const counterEl = document.getElementById("blessing-count");
+      if (counterEl) counterEl.innerText = lampsCount;
+
+      const btnText = document.getElementById("light-btn-text");
+      if (btnText) btnText.innerText = "ദീപം ജ്വലിച്ചു • Blessing Received!";
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 45,
+          spread: 70,
+          origin: { y: 0.65 },
+          colors: ['#FF9800', '#FFC107', '#E91E63', '#FFF8E1']
+        });
+      }
+      playTempleBellChime();
+    }
+
+    function playTempleBellChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 1.4);
+
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.4);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 1.4);
+      } catch (err) {}
+    }
+
+    // 5. Synthesized Audio
+    let isPlaying = false;
+    document.getElementById("audio-btn").addEventListener("click", () => {
+      isPlaying = !isPlaying;
+      const text = document.getElementById("audio-text");
+      if (isPlaying) {
+        text.innerText = "Playing • നിർവൃതി";
+        startHarmonicDrone();
+      } else {
+        text.innerText = "പ്രണവ മന്ത്രം • Music";
+        stopHarmonicDrone();
+      }
+    });
+
+    let droneAudioCtx = null, droneOsc1 = null, droneOsc2 = null;
+
+    function startHarmonicDrone() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        droneAudioCtx = new AudioCtx();
+        droneOsc1 = droneAudioCtx.createOscillator();
+        droneOsc2 = droneAudioCtx.createOscillator();
+        const masterGain = droneAudioCtx.createGain();
+
+        droneOsc1.type = "triangle";
+        droneOsc1.frequency.setValueAtTime(146.83, droneAudioCtx.currentTime);
+
+        droneOsc2.type = "sine";
+        droneOsc2.frequency.setValueAtTime(220.00, droneAudioCtx.currentTime);
+
+        masterGain.gain.setValueAtTime(0.08, droneAudioCtx.currentTime);
+
+        droneOsc1.connect(masterGain);
+        droneOsc2.connect(masterGain);
+        masterGain.connect(droneAudioCtx.destination);
+
+        droneOsc1.start();
+        droneOsc2.start();
+      } catch(e) {}
+    }
+
+    function stopHarmonicDrone() {
+      if (droneAudioCtx) {
+        try {
+          droneOsc1 && droneOsc1.stop();
+          droneOsc2 && droneOsc2.stop();
+          droneAudioCtx.close();
+        } catch(e) {}
+      }
+    }
+
+    // 6. Calendar & Wishes Helpers
+    function addToCalendar(e) {
+      e.preventDefault();
+      const title = encodeURIComponent("Wedding of Visakh & Arya");
+      const details = encodeURIComponent("Holy Matrimony of Visakh Vijayakumar and Arya Narayanan at Attukal Bhagavathy Temple followed by traditional Kerala Sadya.");
+      const location = encodeURIComponent("Attukal Bhagavathy Temple, Manacaud, Thiruvananthapuram, Kerala 695009");
+      const dates = "20261214T043000Z/20261214T083000Z";
+      window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`, "_blank");
+    }
+
+    function submitWish(e) {
+      e.preventDefault();
+      const name = document.getElementById("guest-name").value.trim();
+      const city = document.getElementById("guest-city").value.trim();
+      const message = document.getElementById("guest-message").value.trim();
+      if (!name || !message) return;
+
+      const list = document.getElementById("wishes-list");
+      const wishCard = document.createElement("div");
+      wishCard.className = "p-3.5 rounded-xl bg-amber-50/90 border border-kasavu/30 text-xs sm:text-sm";
+      wishCard.innerHTML = `
+        <div class="flex justify-between font-bold text-maroon mb-1">
+          <span>${escapeHtml(name)} ${city ? `<span class="text-slate-500 font-normal text-xs">(${escapeHtml(city)})</span>` : ''}</span>
+          <span class="text-[11px] text-amber-700 font-semibold">Just now</span>
+        </div>
+        <p class="text-slate-700">“${escapeHtml(message)}”</p>
+      `;
+      list.prepend(wishCard);
+      document.getElementById("wish-form").reset();
+
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 25, spread: 40, origin: { y: 0.85 }, colors: ['#FFD54F', '#6B1D2F', '#4CAF50'] });
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>

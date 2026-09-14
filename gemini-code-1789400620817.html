@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Visakh & Arya — Wedding Story</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Gayathri:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --maroon: #631322;
+      --gold-yellow: #F5A623;
+      --deep-green: #1B4D3E;
+      --cream: #FFFDF9;
+      --sunset-top: #A9D5EC;
+      --sunset-mid: #FAD0A1;
+      --sunset-bot: #F89B72;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #121214;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* 9:16 Mobile Viewport Frame */
+    .story-viewport {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      max-width: 440px;
+      max-height: 900px;
+      overflow: hidden;
+      border-radius: 0;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      background: linear-gradient(180deg, var(--sunset-top) 0%, var(--sunset-mid) 40%, var(--sunset-bot) 75%, #F07E52 100%);
+    }
+
+    @media (min-width: 480px) {
+      .story-viewport {
+        height: 94vh;
+        border-radius: 28px;
+        border: 4px solid #333;
+      }
+    }
+
+    /* Hanging Floral Toran Garland */
+    .toran-garland {
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      z-index: 40;
+      pointer-events: none;
+      background-image: radial-gradient(circle at 10px 10px, #FF6F00 7px, transparent 8px),
+                        radial-gradient(circle at 24px 14px, #FFB300 6px, transparent 7px),
+                        radial-gradient(circle at 38px 10px, #FFFFFF 7px, transparent 8px);
+      background-size: 48px 48px;
+      background-repeat: repeat-x;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.18));
+      transform-origin: top center;
+      animation: gentleSwing 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes gentleSwing {
+      0% { transform: rotate(-0.5deg); }
+      100% { transform: rotate(0.5deg); }
+    }
+
+    /* Foreground Banana & Mango Leaves */
+    .foliage-left, .foliage-right {
+      position: absolute;
+      width: 130px;
+      height: 280px;
+      z-index: 30;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 10% 50%, #2e7d32 0%, #1b5e20 80%);
+      opacity: 0.92;
+      filter: drop-shadow(0 10px 14px rgba(0,0,0,0.25));
+    }
+
+    .foliage-left {
+      bottom: -40px;
+      left: -40px;
+      border-radius: 0 100% 30% 0;
+      transform: rotate(20deg);
+    }
+
+    .foliage-right {
+      bottom: -40px;
+      right: -40px;
+      border-radius: 100% 0 0 30%;
+      transform: rotate(-20deg);
+    }
+
+    /* Top Instagram-Style Progress Bars */
+    .progress-header {
+      position: absolute;
+      top: 14px;
+      left: 0;
+      width: 100%;
+      padding: 0 14px;
+      display: flex;
+      gap: 6px;
+      z-index: 50;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 3.5px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #FFFFFF;
+      border-radius: 4px;
+    }
+
+    /* Audio Toggle & Floating Controls */
+    .top-action-bar {
+      position: absolute;
+      top: 26px;
+      right: 16px;
+      z-index: 50;
+    }
+
+    .sound-btn {
+      background: rgba(0,0,0,0.35);
+      border: none;
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Slide Management */
+    .slides-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 24px 80px;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.96);
+      transition: all 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    /* Floating White-Sticker Style Elements */
+    .sticker-badge {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      color: var(--maroon);
+      background: #FFFFFF;
+      padding: 2px 28px 8px;
+      border-radius: 40px;
+      display: inline-block;
+      box-shadow: 0 8px 0px rgba(99, 19, 34, 0.15), 0 16px 25px rgba(0,0,0,0.18);
+      border: 3.5px solid #FFFFFF;
+      transform: rotate(-3deg);
+      animation: floatSlow 3.5s ease-in-out infinite alternate;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    @keyframes floatSlow {
+      0% { transform: translateY(0px) rotate(-3deg); }
+      100% { transform: translateY(-8px) rotate(-1deg); }
+    }
+
+    .monogram {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.6rem;
+      font-weight: 700;
+      color: var(--maroon);
+      letter-spacing: -2px;
+      line-height: 1;
+      text-shadow: 2px 3px 0 #FFF, 4px 5px 0 rgba(0,0,0,0.1);
+      margin-bottom: 12px;
+    }
+
+    /* Cutout Cartoon Character Card */
+    .character-cutout-box {
+      width: 270px;
+      height: 380px;
+      border-radius: 24px;
+      background: #FFFFFF;
+      padding: 8px;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+      border: 4px solid #FFF;
+      position: relative;
+      margin: 10px 0 20px;
+    }
+
+    .character-cutout-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .content-box {
+      text-align: center;
+      color: #2D2325;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      padding: 18px 24px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      max-width: 340px;
+      width: 100%;
+    }
+
+    .event-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: var(--maroon);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .date-highlight {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1F1E1E;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .time-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--maroon);
+      margin-bottom: 8px;
+    }
+
+    /* Touch Navigation Zones */
+    .nav-tap-zone {
+      position: absolute;
+      top: 60px;
+      bottom: 70px;
+      width: 35%;
+      z-index: 45;
+    }
+
+    .nav-left { left: 0; }
+    .nav-right { right: 0; }
+
+    /* Interactive Action Buttons */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--maroon);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(99,19,34,0.3);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Floating Diya / Oil Lamp SVG */
+    .vilakku-icon {
+      filter: drop-shadow(0 6px 12px rgba(245, 166, 35, 0.4));
+      margin-bottom: 12px;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(0.98); opacity: 0.92; }
+      100% { transform: scale(1.02); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hidden Instrumental Audio (replace src with nadaswaram/shehnai royalty-free mp3) -->
+  <audio id="weddingMusic" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=traditional-indian-wedding-112543.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="story-viewport" id="storyFrame">
+    
+    <!-- Floral Garlands on Top -->
+    <div class="toran-garland"></div>
+
+    <!-- Side Green Foliage (Banana/Mango leaves overlay) -->
+    <div class="foliage-left"></div>
+    <div class="foliage-right"></div>
+
+    <!-- Instagram Top Progress Bars -->
+    <div class="progress-header" id="progressHeader">
+      <div class="progress-track" onclick="goToSlide(0)"><div class="progress-fill"></div></div>
+      <div class="progress-track" onclick="goToSlide(1)"><div class="progress-fill"></div></div>
+      <div class="progress-track" onclick="goToSlide(2)"><div class="progress-fill"></div></div>
+      <div class="progress-track" onclick="goToSlide(3)"><div class="progress-fill"></div></div>
+      <div class="progress-track" onclick="goToSlide(4)"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- Music Toggle Button -->
+    <div class="top-action-bar">
+      <button class="sound-btn" id="soundToggle" aria-label="Toggle Audio">
+        <i data-lucide="volume-x" id="soundIcon" style="width: 20px; height: 20px;"></i>
+      </button>
+    </div>
+
+    <!-- Invisible Left/Right Tap Zones for Story Navigation -->
+    <div class="nav-tap-zone nav-left" onclick="prevSlide()"></div>
+    <div class="nav-tap-zone nav-right" onclick="nextSlide()"></div>
+
+    <!-- SLIDES CONTAINER -->
+    <div class="slides-container">
+
+      <!-- SLIDE 1: Monogram & Opening Hook -->
+      <section class="slide active">
+        <div class="monogram">VA</div>
+        <div class="sticker-badge">It's Our Wedding</div>
+        
+        <div class="content-box">
+          <p style="font-family: 'Gayathri', sans-serif; font-size: 1.15rem; color: var(--maroon); margin-bottom: 8px;">
+            ॥ ശ്രീ ഗണേശായ നമഃ ॥
+          </p>
+          <p style="font-size: 0.95rem; font-weight: 600; color: #444;">
+            A Celebration of Eternal Togetherness
+          </p>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: Save the Date & Couple Portrait -->
+      <section class="slide">
+        <div class="sticker-badge" style="font-size: 2.8rem;">Save the Date</div>
+        
+        <div class="character-cutout-box">
+          <!-- Uses your traditional Kerala illustration -->
+          <img src="couple_traditional.png" alt="Visakh & Arya" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=60';" />
+        </div>
+
+        <div class="content-box">
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--maroon);">Visakh &amp; Arya</h2>
+          <p style="font-size: 0.85rem; color: #555; margin-top: 4px;">14th December 2026</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: The Groom & Bride Families -->
+      <section class="slide">
+        <div class="sticker-badge" style="font-size: 2.5rem; transform: rotate(2deg);">Blessed Families</div>
+        
+        <div class="content-box" style="margin-bottom: 12px; text-align: left;">
+          <strong style="color: var(--maroon); font-size: 1.05rem; display: block;">Visakh Vijayakumar</strong>
+          <p style="font-size: 0.8rem; color: #555;">Son of Late Vijayakumar B &amp; Smt. Sulochana S</p>
+          <p style="font-size: 0.76rem; color: #777;">Sulubhavanam, Kodumon, Pathanamthitta</p>
+        </div>
+
+        <div class="content-box" style="text-align: left;">
+          <strong style="color: var(--maroon); font-size: 1.05rem; display: block;">Arya Narayanan</strong>
+          <p style="font-size: 0.8rem; color: #555;">Daughter of Sri. D. Narayanan &amp; Smt. Vahitha P</p>
+          <p style="font-size: 0.76rem; color: #777;">Tagore Gardens, Kumarapuram, Thiruvananthapuram</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Muhurtham (With Malayali Vow) -->
+      <section class="slide">
+        <!-- Traditional Deepam / Nilavilakku Icon -->
+        <svg class="vilakku-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2c0 3-2 5-2 7a2 2 0 0 0 4 0c0-2-2-4-2-7z" fill="#FFC107"/>
+          <path d="M5 13h14l-1.5 3h-11L5 13z" fill="#E65100"/>
+          <path d="M12 16v5"/>
+          <path d="M8 21h8"/>
+        </svg>
+
+        <div class="sticker-badge" style="font-size: 2.6rem;">Muhurtham</div>
+
+        <div class="content-box">
+          <div class="date-highlight">14th December 2026</div>
+          <div class="time-text">Morning at 10:00 AM</div>
+          
+          <p style="font-family: 'Gayathri', sans-serif; font-size: 0.95rem; color: var(--maroon); line-height: 1.6; font-weight: 700; margin-top: 10px;">
+            “നിന്റെ വഴികൾ എന്റെ വഴികൾ, നിന്റെ പ്രിയപ്പെട്ടവർ എന്റെയും... ഒരുമയോടെ, സപ്തപദികളിലൂടെ.”
+          </p>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: Temple Venue & Actionable Maps -->
+      <section class="slide">
+        <div class="sticker-badge" style="font-size: 2.6rem;">The Venue</div>
+
+        <div class="content-box">
+          <h3 class="event-title" style="font-size: 2.2rem;">Attukal Temple</h3>
+          <p style="font-weight: 700; color: #333; margin-bottom: 2px;">Attukal Bhagavathy Temple</p>
+          <p style="font-size: 0.85rem; color: #666; margin-bottom: 12px;">Thiruvananthapuram, Kerala</p>
+
+          <p style="font-size: 0.82rem; color: var(--gold-yellow); font-weight: 700; background: var(--maroon); border-radius: 8px; padding: 4px 8px; display: inline-block;">
+            Traditional Sadya to Follow
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px;">
+            <a href="https://maps.google.com/?q=Attukal+Bhagavathy+Temple+Thiruvananthapuram" target="_blank" class="btn-action">
+              <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+              Open in Google Maps
+            </a>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Visakh+and+Arya&dates=20261214T043000Z/20261214T083000Z&details=Wedding+at+Attukal+Temple+followed+by+Sadya&location=Attukal+Bhagavathy+Temple" target="_blank" class="btn-action" style="background:#4285F4;">
+              <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>
+              Save to Calendar
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const slides = document.querySelectorAll('.slide');
+    const fills = document.querySelectorAll('.progress-fill');
+    const audio = document.getElementById('weddingMusic');
+    const soundToggle = document.getElementById('soundToggle');
+    const soundIcon = document.getElementById('soundIcon');
+
+    let currentSlide = 0;
+    const durationPerSlide = 5000; // 5 seconds per story slide
+    let slideTimer = null;
+    let startTime = 0;
+    let isPlayingAudio = false;
+
+    function renderSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+
+      fills.forEach((fill, i) => {
+        if (i < index) {
+          fill.style.transition = 'none';
+          fill.style.width = '100%';
+        } else if (i === index) {
+          fill.style.transition = 'none';
+          fill.style.width = '0%';
+          setTimeout(() => {
+            fill.style.transition = `width ${durationPerSlide}ms linear`;
+            fill.style.width = '100%';
+          }, 40);
+        } else {
+          fill.style.transition = 'none';
+          fill.style.width = '0%';
+        }
+      });
+
+      clearTimeout(slideTimer);
+      slideTimer = setTimeout(() => {
+        if (currentSlide < slides.length - 1) {
+          nextSlide();
+        } else {
+          // Loop back to start
+          goToSlide(0);
+        }
+      }, durationPerSlide);
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        renderSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        renderSlide(currentSlide);
+      }
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      renderSlide(currentSlide);
+    }
+
+    // Audio Play/Pause Handling
+    soundToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!isPlayingAudio) {
+        audio.play().then(() => {
+          isPlayingAudio = true;
+          soundIcon.setAttribute('data-lucide', 'volume-2');
+          lucide.createIcons();
+        }).catch(() => {});
+      } else {
+        audio.pause();
+        isPlayingAudio = false;
+        soundIcon.setAttribute('data-lucide', 'volume-x');
+        lucide.createIcons();
+      }
+    });
+
+    // Start on load
+    renderSlide(0);
+  </script>
+</body>
+</html>
