@@ -363,7 +363,7 @@
     select('.hero').addEventListener('pointermove',event => { if (motionPaused || event.pointerType === 'touch') return; const bounds = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty('--pointer-x',((event.clientX - bounds.left) / bounds.width - .5) * 12 + 'px'); event.currentTarget.style.setProperty('--pointer-y',((event.clientY - bounds.top) / bounds.height - .5) * 8 + 'px'); });
     select('.hero').addEventListener('pointerleave',event => { event.currentTarget.style.setProperty('--pointer-x','0px'); event.currentTarget.style.setProperty('--pointer-y','0px'); });
     select('.hand-scene').addEventListener('pointermove',event => { if (!motionPaused && event.pointerType !== 'touch') event.currentTarget.style.setProperty('--hand-x',(event.clientX / innerWidth - .5) * 12 + 'px'); });
-    const song = select('#song'); const musicButton = select('#music-button'); let audioFrame = 0; let musicBusy = false; let fadeResolve = null; let audioGeneration = 0; let autoplayPending = true;
+    const song = select('#song'); const musicButton = select('#music-button'); let audioFrame = 0; let musicBusy = false; let fadeResolve = null; let audioGeneration = 0; let autoplayPending = true; let previewRepeatsRemaining = 0;
     function musicState(playing) { musicButton.setAttribute('aria-pressed',String(playing)); musicButton.setAttribute('aria-label',(playing ? 'Pause' : 'Play') + ' Pesamale preview'); musicButton.title = musicButton.getAttribute('aria-label'); musicButton.innerHTML = '<i data-lucide="' + (playing ? 'pause' : 'play') + '"></i>'; select('#music-state').textContent = playing ? '· Playing preview' : '· Preview'; icons(); }
     function cancelFade() { cancelAnimationFrame(audioFrame); if (fadeResolve) { fadeResolve(); fadeResolve = null; } }
     function fadeVolume(target,duration) { cancelFade(); const start = performance.now(); const initial = song.volume; return new Promise(resolve => { fadeResolve = resolve; function step(now) { const progress = Math.min(1,(now - start) / duration); song.volume = Math.max(0,Math.min(1,initial + (target - initial) * progress)); if (progress < 1) audioFrame = requestAnimationFrame(step); else { fadeResolve = null; resolve(); } } audioFrame = requestAnimationFrame(step); }); }
@@ -372,9 +372,9 @@
       musicBusy = true; const generation = ++audioGeneration;
       try {
         if (song.ended) song.currentTime = 0;
-        song.volume = 0; await song.play();
+        previewRepeatsRemaining = 1; song.volume = .06; await song.play();
         if (generation !== audioGeneration || document.hidden) { song.pause(); return; }
-        autoplayPending = false; musicState(true); await fadeVolume(.65,1400);
+        autoplayPending = false; musicState(true); await fadeVolume(.58,3200);
       } catch (error) {
         if (generation !== audioGeneration) return;
         musicState(false);
@@ -382,10 +382,20 @@
         else if (!automatic) toast('The preview could not play. You can open the full song on Apple Music.');
       } finally { if (generation === audioGeneration) musicBusy = false; }
     }
+    async function replayPreview() {
+      if (previewRepeatsRemaining < 1 || document.hidden) { musicState(false); return; }
+      previewRepeatsRemaining--; musicBusy = true; const generation = ++audioGeneration;
+      try {
+        song.currentTime = 0; song.volume = .06; await song.play();
+        if (generation !== audioGeneration || document.hidden) { song.pause(); return; }
+        musicState(true); await fadeVolume(.58,3200);
+      } catch { musicState(false); }
+      finally { if (generation === audioGeneration) musicBusy = false; }
+    }
     musicButton.addEventListener('click',async () => { if (musicBusy) return; autoplayPending = false; if (song.paused) { await startMusic(); return; } musicBusy = true; const generation = ++audioGeneration; await fadeVolume(0,400); if (generation === audioGeneration) { song.pause(); musicBusy = false; } });
     document.addEventListener('click',event => { if (event.isTrusted && autoplayPending && !event.target.closest('#music-button,#open-invitation')) startMusic(true); },{capture:true});
     window.addEventListener('DOMContentLoaded',() => startMusic(true));
-    song.addEventListener('timeupdate',() => { if (Number.isFinite(song.duration) && song.duration - song.currentTime < 2) song.volume = Math.max(0,.65 * (song.duration - song.currentTime) / 2); }); song.addEventListener('ended',() => musicState(false)); song.addEventListener('pause',() => musicState(false));
+    song.addEventListener('timeupdate',() => { if (Number.isFinite(song.duration) && song.duration - song.currentTime < 2) song.volume = Math.max(0,.58 * (song.duration - song.currentTime) / 2); }); song.addEventListener('ended',replayPreview); song.addEventListener('pause',() => musicState(false));
     document.addEventListener('visibilitychange',() => { document.body.classList.toggle('page-hidden',document.hidden); if (document.hidden) { audioGeneration++; cancelFade(); song.pause(); musicBusy = false; } });
     const tabs = [select('#rsvp-tab'),select('#wish-tab')];
     function setTab(active) { tabs.forEach(tab => { const selected = tab === active; tab.setAttribute('aria-selected',String(selected)); tab.tabIndex = selected ? 0 : -1; select('#' + tab.getAttribute('aria-controls')).hidden = !selected; }); }
