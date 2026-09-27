@@ -1,960 +1,445 @@
 <!DOCTYPE html>
-<html lang="ml">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>വിശാഖ് & ആര്യ | Visakh & Arya — Wedding Invitation</title>
-
-  <!-- Google Fonts -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#651e39">
+  <meta name="description" content="Celebrate Visakh & Arya's wedding on 14 December 2026 at 11:30 AM, Sree Padmanabhaswamy Temple, Thiruvananthapuram. Venue: Sree Ananthasayanam Kalyana Mandapam.">
+  <title>Visakh & Arya | 14 December 2026</title>
+  <link rel="preload" as="image" href="ganapathy.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;800;900&family=Gayathri:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Rozha+One&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Canvas Confetti for Blessings Lamp -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            kasavu: '#C59A3F',
-            kasavulight: '#F7E7B4',
-            kasavudark: '#8D6B1B',
-            maroon: '#6B1D2F',
-            deepmaroon: '#4D1220',
-            creambg: '#FCFAF5',
-            creamcard: '#FFFFFF',
-            tealaccent: '#18473F',
-            templegold: '#E5B94E',
-          },
-          fontFamily: {
-            cinzel: ['Cinzel', 'serif'],
-            cinzelDeco: ['Cinzel Decorative', 'serif'],
-            malayalam: ['Gayathri', 'sans-serif'],
-            rozha: ['Rozha One', 'serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Gayathri:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <style>
-    :root {
-      --gold-line: rgba(197, 154, 63, 0.45);
-      --gold-glow: rgba(229, 185, 78, 0.6);
-      --maroon: #6B1D2F;
+    :root { --ink:#302d29; --wine:#702b37; --rose:#f3eee6; --green:#284b40; --paper:#fffefa; --gold:#a57f37; --line:#ddd6c7; --muted:#6e665c; --display:'Cormorant Garamond',Georgia,serif; --body:'DM Sans',sans-serif; }
+    * { box-sizing:border-box; letter-spacing:0; }
+    html { scroll-behavior:smooth; scroll-padding-top:84px; }
+    html:has(.opening-screen:not([hidden])) { overflow-anchor:none; scroll-behavior:auto; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:var(--body); font-size:15px; line-height:1.65; }
+    .opening-screen { position:fixed; inset:0; z-index:90; display:grid; place-content:center; justify-items:center; gap:20px; padding:40px 24px; overflow:auto; text-align:center; background:transparent; }
+    .opening-backdrop { position:absolute !important; inset:0; z-index:0 !important; background:radial-gradient(ellipse at top,#edf3ea,transparent 70%),var(--paper); opacity:1; transition:opacity 1.35s cubic-bezier(.22,.7,.18,1) .1s; }
+    .opening-screen::before,.opening-screen::after { content:''; position:absolute; top:5%; bottom:5%; width:min(660px,88%); left:50%; transform:translateX(-50%); border:1px solid #a57f3766; border-radius:48% 48% 0 0; pointer-events:none; }
+    .opening-screen::after { top:7%; bottom:7%; width:min(690px,93%); border-color:#71866155; }
+    .opening-screen > * { position:relative; z-index:1; }
+    .opening-screen.is-closing { overflow:hidden; background:transparent; pointer-events:none; }
+    .opening-screen.is-closing::before,.opening-screen.is-closing::after,
+    .opening-screen.is-closing .opening-art::before,.opening-screen.is-closing .opening-art::after,
+    .opening-screen.is-closing > :not(.opening-art):not(.opening-names):not(.opening-backdrop) { opacity:0; transition:opacity .5s ease; }
+    .opening-screen.is-closing .opening-backdrop { opacity:0; }
+    .opening-screen.is-closing .opening-names > *, .opening-screen.is-closing .ganapathy { transform-origin:top left; }
+    .opening-screen.is-closing .opening-names > * { animation:none; }
+    .opening-transfer .hero-copy h1,.opening-transfer .hero-ganapathy { visibility:hidden; }
+    .opening-transfer .hero-invocation,.opening-transfer .hero-copy > p { opacity:0; }
+    .hero-invocation,.hero-copy > p,.hero-down { transition:opacity .8s ease .2s; }
+    .opening-transfer .hero-down { opacity:0; }
+    .opening-transfer .hero-images { animation:portrait-settle 1.6s cubic-bezier(.22,.7,.18,1) both; }
+    @keyframes portrait-settle { 0%,15% { opacity:0; transform:translateY(-42px) scale(1.035); } 100% { opacity:1; transform:translateY(0) scale(1); } }
+    .hero-ganapathy { position:absolute; z-index:2; top:8px; left:calc(50% - 28px); width:56px; height:56px; background:url('ganapathy.png') center / contain no-repeat; }
+    .hero .hero-invocation { top:68px; }
+    body:not(.invitation-open) .petal-field { visibility:hidden; }
+    .opening-art { width:164px; height:164px; display:grid; place-items:center; }
+    .opening-art::before,.opening-art::after { content:''; position:absolute; inset:0; border:1px solid #81916c88; border-radius:50% 8% 50% 8%; animation:blessing-turn 24s linear infinite; }
+    .opening-art::after { inset:10px; border-color:#b68f4977; animation-direction:reverse; }
+    .ganapathy { width:132px; height:132px; object-fit:contain; }
+    .opening-blessing { max-width:380px; font:italic 500 23px/1.3 var(--display); color:var(--green); }
+    .opening-screen .eyebrow { margin:0; }
+    .opening-invocation { color:var(--wine); font-size:23px; }
+    .opening-names { display:flex; align-items:center; justify-content:center; gap:18px; font:500 70px/1.15 var(--display); color:var(--green); }
+    .opening-names em { color:var(--gold); font-size:44px; animation:name-join 1.8s ease both; }
+    .opening-names .first-name { animation:name-from-left 2s cubic-bezier(.22,.7,.18,1) both; }
+    .opening-names .second-name { animation:name-from-right 2s cubic-bezier(.22,.7,.18,1) both; }
+    .opening-date { font-size:15px; font-weight:700; color:var(--wine); padding-block:10px; border-block:1px solid #a57f3766; display:flex; align-items:center; gap:10px; }
+    .opening-date svg { width:19px; height:19px; flex-shrink:0; }
+    .opening-screen .button { z-index:1; margin-top:20px; }
+    .petal-field { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:91; }
+    .petal-field > span { position:absolute; top:-36px; left:var(--left); width:16px; height:29px; opacity:0; animation:petal-fall var(--duration,22s) linear var(--delay,0s) infinite; }
+    body:not(.invitation-open) .petal-field > span { animation-play-state:paused; }
+    .page-hidden .petal-field > span { animation-play-state:paused !important; }
+    .petal-field > span::before { content:''; position:absolute; inset:0; border-radius:10% 85% 18% 85%; background:#bb9349; animation:petal-flutter 4.8s ease-in-out var(--delay,0s) infinite alternate; }
+    .petal-field > span:nth-child(3n)::before { background:#fffdf2; border:1px solid #b29a68; border-radius:70% 12% 70% 25%; }
+    .petal-field > span:nth-child(3n + 2)::before { background:#c57e91; border-radius:80% 15% 70% 15%; }
+    .petal-field > span:nth-child(4n) { width:8px; height:17px; }
+    .floral-sprig { position:absolute; top:12%; left:-36px; width:74px; height:230px; border-right:1px solid #718661; border-radius:50%; opacity:.25; transform-origin:50% 0; animation:floral-sway 12s ease-in-out infinite alternate; }
+    .floral-sprig.right { left:auto; right:-36px; top:58%; rotate:180deg; animation-delay:-6s; }
+    .floral-sprig i { position:absolute; right:-4px; top:var(--top); width:18px; height:34px; border:1px solid #718661; border-radius:0 85% 0 85%; background:#839d762b; rotate:30deg; transform-origin:bottom right; }
+    .floral-sprig i:nth-child(even) { right:2px; rotate:-48deg; border-radius:85% 0 85% 0; }
+    .main-leaves { position:absolute; inset:0; display:none; }
+    .invitation-open .main-leaves { display:block; }
+    .main-leaves i { position:absolute; left:-65px; top:16%; width:140px; height:260px; border:1px solid #718661; border-radius:0 85% 0 85%; background:linear-gradient(45deg,transparent 49.5%,#718661 50%,transparent 50.5%),#839d7614; opacity:.32; transform-origin:bottom left; animation:leaf-drift 16s ease-in-out infinite alternate; }
+    .main-leaves i:nth-child(2) { left:auto; right:-70px; top:5%; rotate:95deg; border-color:var(--gold); animation-delay:-9s; }
+    .main-leaves i:nth-child(3) { top:68%; left:-80px; rotate:-25deg; animation-delay:-5s; }
+    .main-leaves i:nth-child(4) { top:65%; left:auto; right:-65px; rotate:150deg; border-color:var(--wine); animation-delay:-12s; }
+    .scroll-chakra { display:none; position:absolute; top:38vh; right:-42px; width:180px; aspect-ratio:1; border:1px solid #a57f3766; border-radius:50%; opacity:.2; transform:rotate(var(--chakra-rotation,0deg)); }
+    .scroll-chakra::before { content:''; position:absolute; inset:9px; border:1px solid #a57f37a0; border-radius:50%; background:radial-gradient(circle,transparent 0 12%,#a57f3780 13% 15%,transparent 16% 38%,#a57f3780 39% 41%,transparent 42%),repeating-conic-gradient(#a57f3780 0deg 2deg,transparent 2deg 45deg); mask-image:radial-gradient(circle,#000 0 70%,transparent 71%); }
+    .scroll-chakra::after { content:''; position:absolute; width:11px; aspect-ratio:1; top:calc(50% - 5.5px); left:calc(50% - 5.5px); border:1px solid #a57f37b0; border-radius:50%; background:#fffefa; }
+    @keyframes leaf-drift { from { transform:translate3d(-8px,-18px,0) rotate(-8deg); } to { transform:translate3d(18px,24px,0) rotate(10deg); } }
+    .page-hidden .petal-field *,.page-hidden .petal-field *::before { animation-play-state:paused !important; }
+    @keyframes name-from-left { from { opacity:0; transform:translateX(-70px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes name-from-right { from { opacity:0; transform:translateX(70px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes name-join { 0%,35% { opacity:0; } 100% { opacity:1; } }
+    @keyframes opening-exit { to { opacity:0; visibility:hidden; pointer-events:none; } }
+    @keyframes blessing-turn { to { transform:rotate(360deg); } }
+    @keyframes petal-fall { 0% { opacity:0; transform:translate3d(-12px,-30px,0) rotate(-15deg); } 12% { opacity:.72; } 25% { transform:translate3d(22px,26svh,0) rotate(20deg); } 50% { transform:translate3d(-16px,55svh,0) rotate(-12deg); } 75% { transform:translate3d(30px,83svh,0) rotate(25deg); } 88% { opacity:.72; } 100% { opacity:0; transform:translate3d(6px,112svh,0) rotate(-8deg); } }
+    @keyframes petal-flutter { from { transform:rotate(-24deg) scaleX(.7); } to { transform:rotate(38deg) scaleX(1); } }
+    @keyframes floral-sway { from { transform:rotate(-5deg) translateX(-3px); } to { transform:rotate(6deg) translateX(3px); } }
+    button,input,textarea,select { font:inherit; }
+    button,a,input,textarea,select { -webkit-tap-highlight-color:transparent; }
+    button,a { touch-action:manipulation; }
+    a { color:inherit; }
+    button { cursor:pointer; }
+    button:disabled { cursor:wait; opacity:.65; }
+    :focus-visible { outline:3px solid #bb7b95; outline-offset:5px; }
+    img { display:block; max-width:100%; }
+    button svg,a svg { width:18px; height:18px; flex-shrink:0; }
+    h1,h2,h3,p,figure { margin:0; }
+    h1,h2,h3 { font-family:var(--display); font-weight:500; line-height:1.05; }
+    h2 { font-size:52px; }
+    h3 { font-size:31px; }
+    p + p { margin-top:12px; }
+    .ml { font-family:'Gayathri',sans-serif; }
+    .eyebrow { font-size:11px; text-transform:uppercase; font-weight:600; color:var(--wine); margin-bottom:14px; }
+    .wrap { width:min(1120px,calc(100% - 80px)); margin-inline:auto; }
+    .section { padding-block:96px; }
+    .section-heading { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:40px; }
+    .muted { color:var(--muted); }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:12px 22px; border:1px solid var(--wine); border-radius:4px; background:var(--wine); color:white; text-decoration:none; font-size:13px; font-weight:500; transition:background .2s,transform .2s; }
+    .button:hover { background:#842b4d; transform:translateY(-2px); }
+    .button.secondary { background:transparent; color:var(--wine); }
+    .button.secondary:hover { background:var(--rose); }
+    .icon-button { display:inline-grid; place-items:center; width:44px; height:44px; flex-shrink:0; padding:0; border:1px solid var(--line); border-radius:50%; background:var(--paper); color:var(--wine); }
+    .skip { position:fixed; top:-80px; left:12px; z-index:100; }
+    .skip:focus { top:12px; }
+    .topbar { height:72px; display:flex; align-items:center; justify-content:space-between; padding-inline:40px; border-bottom:1px solid var(--line); background:rgba(255,253,253,.96); position:sticky; top:0; z-index:30; }
+    .monogram { font-family:var(--display); font-size:30px; color:var(--wine); text-decoration:none; }
+    .monogram em { font-size:22px; margin-inline:4px; }
+    .nav { display:flex; gap:28px; align-items:center; }
+    .nav a { text-decoration:none; font-size:12px; }
+    .nav a:hover { color:var(--wine); }
+    .nav .nav-rsvp { padding:8px 18px; border:1px solid var(--line); border-radius:4px; }
+    .hero { height:calc(89svh - 72px); min-height:590px; max-height:920px; position:relative; isolation:isolate; overflow:hidden; background:#f5f8f1; border-block:3px double #c3a168; }
+    .hero-images { position:absolute; inset:112px 0 250px; overflow:hidden; transform:translate3d(var(--pointer-x,0px),var(--pointer-y,0px),0); transition:transform 1.8s cubic-bezier(.2,.7,.2,1); }
+    .hero-photo { position:relative; overflow:hidden; width:min(100%,620px); height:100%; margin:auto; }
+    .hero-photo img { width:auto; height:100%; margin:auto; object-fit:contain; object-position:center; scale:1.35; transform-origin:center 30%; mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(180deg,transparent,#000 14%,#000 78%,transparent); mask-composite:intersect; animation:photo-drift 22s ease-in-out infinite alternate; }
+    .hero::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,#fffefaec,transparent 19%,transparent 53%,#fffefaec 82%,var(--paper)); z-index:1; pointer-events:none; }
+    .hero-invocation { position:absolute; top:22px; left:20px; right:20px; text-align:center; color:var(--wine); font-size:21px; z-index:2; }
+    .hero-copy { position:absolute; z-index:2; inset:auto 20px 30px; text-align:center; color:var(--green); }
+    .hero-copy .eyebrow { color:var(--wine); margin-bottom:6px; }
+    .hero-copy h1 { font-weight:600; animation:names-glow 5s ease-in-out infinite alternate; }
+    .opening-names { text-shadow:0 2px 14px #d4ad5260; }
+    @keyframes names-glow { from { text-shadow:-14px 0 18px #d4ad5260,0 2px 1px #fff; } to { text-shadow:14px 0 22px #d4ad5299,0 2px 1px #fff; } }
+    h1 { font-size:100px; }
+    h1 em { font-size:70px; color:var(--gold); }
+    .hero-copy .ml { font-size:23px; margin-top:8px; }
+    .hero-copy > p:last-child { font-size:13px; margin-top:14px; }
+    .hero-down { position:absolute; right:30px; bottom:38px; z-index:3; color:var(--green); background:transparent; border-color:var(--line); }
+    .date-strip { display:flex; justify-content:center; align-items:center; gap:38px; min-height:90px; padding:20px; background:var(--green); color:#fffefa; font-size:13px; }
+    .date-strip span { display:flex; gap:10px; align-items:center; }
+    .date-strip svg { width:16px; height:16px; }
+    .date-strip span:first-child { font-weight:700; font-size:16px; color:#ffe2a0; text-shadow:0 0 16px #edc56855; }
+    .date-strip span:nth-child(3) { font-weight:700; }
+    .date-strip { border-block:2px solid #a57f3770; }
+    .opening-date { border-bottom:3px solid var(--gold); background:#f7edcf; }
+    @media (min-width:601px) and (max-width:1100px) { .date-strip { padding-inline:72px; gap:16px; flex-wrap:wrap; } }
+    .date-strip .separator { height:22px; width:1px; background:#c9a6b5; }
+    .intro { text-align:center; max-width:750px; }
+    .intro h2 { font-size:56px; }
+    .intro > p:not(.eyebrow) { max-width:560px; margin:22px auto 0; color:var(--muted); }
+    .countdown { display:flex; justify-content:center; gap:0; margin:38px auto 0; max-width:460px; }
+    .countdown div { width:25%; border-right:1px solid var(--line); }
+    .countdown div:last-child { border:0; }
+    .countdown strong { display:block; font-family:var(--display); font-weight:500; color:var(--wine); font-size:43px; line-height:1.1; font-variant-numeric:tabular-nums; }
+    .countdown span { font-size:10px; color:var(--muted); }
+    .family { display:grid; grid-template-columns:1fr 100px 1fr; gap:36px; padding-top:0; align-items:center; text-align:center; }
+    .family-person { border-block:1px solid var(--line); padding-block:36px; }
+    .family-person .ml { font-size:21px; margin:8px 0 18px; color:var(--wine); }
+    .family-person p { font-size:13px; }
+    .family-person address { margin-top:16px; font-style:normal; font-size:12px; color:var(--muted); }
+    .family-amp { font-family:var(--display); font-style:italic; font-size:76px; color:#b38294; }
+    .hand-scene { position:relative; isolation:isolate; min-height:740px; background:#dfe7de; overflow:hidden; display:flex; align-items:center; }
+    .hand-art { position:absolute; top:0; bottom:0; right:max(0px,calc((100% - 1120px)/2 - 50px)); width:min(64%,600px); mask-image:linear-gradient(90deg,transparent,#000 24%,#000 88%,transparent); pointer-events:none; transform:translate3d(0,var(--hand-scroll-y,0px),0) scale(var(--hand-scroll-scale,1.08)); }
+    .hand-art img { position:absolute; width:100%; height:100%; object-fit:cover; object-position:50% 30%; }
+    .hand-art-inner { position:absolute; inset:-2%; transform:translate3d(var(--hand-x,0px),0,0); transition:transform 2s ease-out; animation:hand-breathe 14s ease-in-out infinite alternate; }
+    .hand-art .hands-detail { mask-image:radial-gradient(ellipse 18% 13% at 49% 76%,#000 50%,transparent 100%); transform-origin:49% 76%; animation:hand-hold 12s cubic-bezier(.45,0,.25,1) infinite; }
+    .hand-scene-copy { position:relative; z-index:2; width:38%; padding-block:80px; }
+    .hand-scene h2 { font-size:64px; color:var(--green); }
+    .hand-scene .eyebrow { color:var(--green); }
+    .hand-scene-copy p:not(.eyebrow) { margin-top:26px; color:#385448; max-width:330px; }
+    .hand-scene-copy .ml { font-size:20px; }
+    .blessing { margin-top:28px; display:flex; gap:12px; align-items:center; }
+    .blessing .icon-button { width:54px; height:54px; border-color:#7f9985; color:var(--green); background:#ffffff70; }
+    .blessing.lit .icon-button { background:#fff0b9; color:#86580e; box-shadow:0 0 0 8px #d6b25020; }
+    .blessing span { font-size:12px; }
+    .venue { background:var(--wine); color:#fff6f8; }
+    .venue .eyebrow { color:#e1bfc8; }
+    .venue-top { display:flex; justify-content:space-between; gap:40px; margin-bottom:54px; }
+    .venue-date { font-family:var(--display); font-size:32px; font-weight:600; text-align:right; flex-shrink:0; color:#ffe0a1; border-block:1px solid #e5c78780; padding-block:16px; align-self:flex-start; }
+    .venue-date span { display:block; font-family:var(--body); font-size:12px; margin-top:8px; color:#e2bdca; }
+    .venue-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+    .venue-detail { border-top:1px solid #ffffff40; padding-top:26px; }
+    .venue-detail .number { font-family:var(--display); color:#dbabbf; font-size:24px; margin-bottom:20px; }
+    .venue-detail .number { display:flex; align-items:center; gap:12px; }
+    .venue-detail .number svg { width:25px; height:25px; color:#ffe0a1; flex-shrink:0; }
+    .venue-detail h3 { font-size:36px; max-width:460px; }
+    .venue-detail p { color:#ead3dc; font-size:13px; margin-top:16px; }
+    .venue-detail .ml { font-size:19px; }
+    .venue a { display:inline-flex; align-items:center; gap:9px; margin-top:26px; font-size:12px; text-decoration:none; border-bottom:1px solid #ca95aa; padding-bottom:4px; }
+    .venue-footer { border-top:1px solid #ffffff40; margin-top:42px; padding-top:24px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .venue-footer p { font-size:12px; color:#ead3dc; }
+    .venue-footer .button { background:transparent; border-color:#c99caf; flex-shrink:0; }
+    .response-section { background:#f6edf0; background-image:repeating-linear-gradient(90deg,transparent,transparent 79px,#651e3905 80px); }
+    .response-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:100px; }
+    .response-heading h2 { font-size:58px; }
+    .response-heading > p:not(.eyebrow) { margin-top:24px; color:var(--muted); }
+    .response-tabs { display:flex; gap:24px; border-bottom:1px solid #d8bdc8; margin-bottom:28px; }
+    .response-tabs button { border:0; background:none; padding:0 0 12px; color:var(--muted); font-size:14px; border-bottom:2px solid transparent; }
+    .response-tabs [aria-selected="true"] { color:var(--wine); border-color:var(--wine); }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    label { display:block; font-size:12px; margin-bottom:18px; color:var(--wine); }
+    input,select,textarea { display:block; width:100%; border:1px solid #d4bbc5; background:#fffdfdcc; border-radius:4px; padding:12px; color:var(--ink); margin-top:6px; font-size:14px; min-height:47px; }
+    textarea { resize:vertical; min-height:110px; }
+    input:focus,textarea:focus,select:focus { border-color:var(--wine); outline:2px solid #651e3915; }
+    .consent { display:flex; align-items:flex-start; gap:9px; font-size:11px; color:var(--muted); }
+    .consent input { width:16px; height:16px; min-height:0; margin:3px 0 0; flex-shrink:0; accent-color:var(--wine); }
+    .form-note { font-size:11px; color:var(--muted); margin:16px 0 0; }
+    .status { min-height:24px; margin-top:16px; font-size:12px; color:var(--wine); overflow-wrap:anywhere; }
+    .saved-wishes { margin-top:22px; }
+    .saved-wish { border-top:1px solid #d8bdc8; padding-top:16px; margin-top:16px; overflow-wrap:anywhere; }
+    .saved-wish p { font-family:var(--display); font-size:24px; }
+    .saved-wish small { color:var(--muted); font-size:11px; }
+    .footer { text-align:center; padding:64px 24px 130px; }
+    .footer h2 { font-size:54px; color:var(--wine); }
+    .footer p { font-size:12px; color:var(--muted); margin-top:16px; }
+    .footer .ml { font-size:20px; color:var(--wine); }
+    .footer-actions { display:flex; justify-content:center; gap:12px; margin-top:24px; }
+    .music-player { position:fixed; bottom:20px; left:24px; z-index:35; display:flex; align-items:center; gap:12px; padding:9px 14px 9px 9px; border:1px solid var(--line); border-radius:6px; background:rgba(255,253,253,.97); box-shadow:0 5px 25px #30272d12; max-width:calc(100% - 90px); }
+    .music-player .icon-button { width:38px; height:38px; background:var(--wine); color:white; border:0; }
+    .track-name { font-size:12px; line-height:1.4; }
+    .track-artist { font-size:9px; color:var(--muted); }
+    .music-link { display:flex; padding:6px; color:var(--muted); }
+    .toast { position:fixed; z-index:80; bottom:100px; left:50%; transform:translateX(-50%); width:max-content; max-width:calc(100% - 40px); padding:12px 20px; background:var(--green); color:white; border-radius:4px; font-size:12px; box-shadow:0 5px 30px #0002; }
+    [hidden] { display:none !important; }
+    .reveal { opacity:1; transform:none; }
+    .motion-ready .reveal.pending { opacity:0; transform:translateY(22px); }
+    .motion-ready .reveal { transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1); }
+    @keyframes photo-drift { from { transform:scale(1); } to { transform:scale(1.065) translateY(-.5%); } }
+    @keyframes hand-breathe { from { scale:1; } to { scale:1.035; } }
+    @keyframes hand-hold { 0%,100% { transform:rotate(-.45deg) translate(-2px,2px); } 35%,70% { transform:rotate(.35deg) translate(2px,-2px); } }
+    .motion-paused *, .motion-paused *::before, .motion-paused *::after { animation-play-state:paused !important; scroll-behavior:auto !important; transition:none !important; }
+    .motion-paused .reveal.pending { opacity:1; transform:none; }
+    @media (min-width:1600px) { .hero { min-height:660px; } }
+    @media (max-width:900px) { .wrap { width:calc(100% - 48px); } .section { padding-block:72px; } .family { gap:18px; grid-template-columns:1fr 44px 1fr; padding-top:0; } .family-person h3 { font-size:28px; } .hand-scene { min-height:660px; } .hand-scene h2 { font-size:46px; } .hand-art { width:60%; } .venue-grid { gap:34px; } .response-grid { gap:44px; } .response-heading h2 { font-size:48px; } }
+    @media (max-width:600px) {
+      .petal-field > span:nth-of-type(n + 13) { display:none; }
+      .petal-field > span { width:13px; height:25px; }
+      .floral-sprig { left:-46px; opacity:.2; }
+      .floral-sprig.right { right:-46px; left:auto; }
+      .main-leaves i { width:90px; height:180px; opacity:.23; }
+      .scroll-chakra { display:block; }
+      .topbar { height:62px; padding-inline:20px; } .monogram { font-size:26px; } .nav { gap:16px; } .nav a { font-size:11px; } .nav .nav-story { display:none; } .nav .nav-rsvp { padding:6px 12px; }
+      .wrap { width:calc(100% - 40px); } .section { padding-block:58px; } h2 { font-size:42px; } .section-heading { align-items:start; margin-bottom:26px; }
+      .hero { height:calc(88svh - 62px); min-height:520px; max-height:760px; } .hero-photo { width:100%; mask-image:none; } .hero-photo img { object-position:center; } .hero-images { bottom:205px; }
+      .hero-invocation { top:18px; font-size:19px; } .hero-copy { bottom:26px; } h1 { font-size:58px; } h1 em { font-size:38px; } .hero-copy .ml { font-size:21px; } .hero-copy > p:last-child { font-size:11px; } .hero-down { display:none; }
+      .opening-names { font-size:48px; gap:12px; } .opening-names em { font-size:32px; } .opening-invocation { font-size:20px; } .opening-screen { gap:20px; }
+      .date-strip { min-height:100px; gap:10px 18px; flex-wrap:wrap; font-size:11px; padding:19px 58px; } .date-strip .separator { display:none; } .date-strip span:last-child { justify-content:center; width:100%; }
+      .date-strip span:first-child { font-size:13px; }
+      .intro h2 { font-size:43px; } .intro > p:not(.eyebrow) { font-size:13px; } .countdown strong { font-size:36px; }
+      .family { grid-template-columns:1fr; gap:12px; padding-top:0; } .family-person { padding-block:28px; } .family-person:first-child { border-bottom:0; } .family-person:last-child { border-top:0; } .family-amp { font-size:42px; line-height:1; }
+      .hand-scene { min-height:1120px; align-items:start; } .hand-scene-copy { width:100%; padding-block:44px; text-align:center; } .hand-scene h2 { font-size:48px; } .hand-scene-copy p:not(.eyebrow) { margin:16px auto 0; font-size:13px; max-width:290px; } .hand-scene-copy .ml { font-size:18px !important; } .hand-art { top:480px; right:0; width:100%; mask-image:linear-gradient(180deg,transparent,#000 17%); } .hand-art img { object-position:center 76%; } .blessing { justify-content:center; margin-top:22px; }
+      .venue-top { flex-direction:column; gap:22px; margin-bottom:34px; } .venue-date { text-align:left; font-size:24px; } .venue-date span { display:inline; margin-left:12px; } .venue-grid { grid-template-columns:1fr; gap:36px; } .venue-detail h3 { font-size:32px; } .venue-footer { align-items:start; flex-direction:column; }
+      .response-grid { grid-template-columns:1fr; gap:30px; } .response-heading h2 { font-size:44px; } .response-heading > p:not(.eyebrow) { font-size:13px; margin-top:14px; } .field-row { gap:12px; } .field-row.names { grid-template-columns:1fr; gap:0; } input,select,textarea { font-size:16px; } .response-tabs button { min-height:44px; }
+      .music-player { bottom:18px; left:12px; padding:0; border:0; background:transparent; box-shadow:none; } .music-player .icon-button { width:44px; height:44px; box-shadow:0 2px 12px #30272d25; } .music-player > div,.music-link { display:none; } .footer { padding-bottom:115px; } .footer h2 { font-size:46px; }
     }
-
-    /* Kasavu Zari Ribbon */
-    .kasavu-border {
-      background: linear-gradient(90deg, 
-        #6B1D2F 0%, 
-        #C59A3F 15%, 
-        #FFF4D0 25%, 
-        #C59A3F 35%, 
-        #8D6B1B 50%, 
-        #C59A3F 65%, 
-        #FFF4D0 75%, 
-        #C59A3F 85%, 
-        #6B1D2F 100%
-      );
-      height: 7px;
-    }
-
-    body {
-      background-color: #FCFAF5;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(197, 154, 63, 0.08) 0%, transparent 60%),
-        radial-gradient(rgba(107, 29, 47, 0.04) 1px, transparent 1px);
-      background-size: 100% 100%, 28px 28px;
-      color: #2F2A28;
-      overflow-x: hidden;
-    }
-
-    /* Preloader Animation */
-    #preloader {
-      position: fixed;
-      inset: 0;
-      background: #FFFDF9;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-
-    .preloader-glow {
-      animation: pulseGlow 2s infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      from { filter: drop-shadow(0 0 10px rgba(197,154,63,0.3)); transform: scale(0.98); }
-      to { filter: drop-shadow(0 0 25px rgba(229,185,78,0.7)); transform: scale(1.02); }
-    }
-
-    /* Rotating Scroll Reactive Mandalas */
-    .mandala-bg {
-      position: fixed;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.12;
-      transition: transform 0.1s linear;
-    }
-
-    /* Golden Shimmer Animation */
-    @keyframes shimmerGold {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-
-    .gold-shimmer {
-      background: linear-gradient(90deg, #997322 0%, #E5B94E 30%, #FFF4D0 50%, #E5B94E 70%, #997322 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmerGold 6s linear infinite;
-    }
-
-    @keyframes flameFlicker {
-      0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; filter: drop-shadow(0 0 10px #FFAA00) drop-shadow(0 0 25px rgba(255, 170, 0, 0.8)); }
-      25% { transform: scale(1.08, 0.95) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 14px #FF8800) drop-shadow(0 0 32px rgba(255, 136, 0, 0.9)); }
-      50% { transform: scale(0.96, 1.05) rotate(-2deg); opacity: 0.92; filter: drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 20px rgba(255, 215, 0, 0.7)); }
-      75% { transform: scale(1.04, 1.02) rotate(1deg); opacity: 0.98; filter: drop-shadow(0 0 16px #FF6600) drop-shadow(0 0 36px rgba(255, 102, 0, 0.95)); }
-    }
-
-    .lamp-flame {
-      transform-origin: bottom center;
-      animation: flameFlicker 1.8s ease-in-out infinite alternate;
-    }
-
-    #petals-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(197, 154, 63, 0.35);
-      box-shadow: 0 12px 35px -8px rgba(107, 29, 47, 0.08), 0 4px 12px rgba(197, 154, 63, 0.06);
-    }
+    @media (max-width:1100px) { .music-player { bottom:18px; left:12px; padding:0; border:0; background:transparent; box-shadow:none; } .music-player .icon-button { width:44px; height:44px; box-shadow:0 2px 12px #30272d25; } .music-player > div,.music-link { display:none; } }
+    @media (max-width:360px) { h1 { font-size:52px; } .nav { gap:12px; } .field-row { grid-template-columns:1fr; gap:0; } }
+    @media (max-height:740px) { .hero { height:calc(86svh - 72px); min-height:330px; } .hero-copy { bottom:24px; } h1 { font-size:62px; } h1 em { font-size:44px; } .hero-copy .ml { font-size:18px; } .hero-copy > p:last-child { margin-top:6px; } }
+    @media (max-height:740px) and (max-width:600px) { .hero { height:calc(86svh - 62px); min-height:440px; } h1 { font-size:54px; } }
+    @media (max-width:360px) { .opening-names { font-size:40px; gap:10px; } .hero-copy h1 { font-size:48px; } .hero-copy h1 em { font-size:32px; } }
+    @media (max-height:700px) { .opening-screen { gap:12px; padding-block:24px; } .opening-art { width:116px; height:116px; } .opening-art .ganapathy { width:98px; height:98px; } .opening-blessing { font-size:20px; } .opening-screen .button { margin-top:8px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none !important; transition:none !important; } .motion-ready .reveal.pending { opacity:1; transform:none; } .opening-screen,.petal-field { display:none; } .hand-art { transform:none; } }
   </style>
 </head>
-
-<body class="relative min-h-screen text-slate-800 antialiased selection:bg-kasavulight selection:text-maroon">
-
-  <!-- Auspicious Preloader -->
-  <div id="preloader">
-    <div class="text-center preloader-glow p-6">
-      <!-- Sacred Om / Ganapati Symbol -->
-      <div class="relative w-24 h-24 mx-auto mb-4 flex items-center justify-center rounded-full bg-amber-50 border border-kasavu/40">
-        <span class="font-malayalam text-4xl font-bold text-maroon">ഓം</span>
-      </div>
-      <h3 class="font-cinzel text-xl md:text-2xl font-bold text-slate-900 tracking-wider">
-        Visakh &amp; Arya
-      </h3>
-      <p class="font-malayalam text-sm text-maroon font-semibold mt-1">
-        മംഗള മുഹൂർത്തത്തിലേക്ക് സ്വാഗതം...
-      </p>
-      <!-- Gold Loading Bar -->
-      <div class="w-48 h-1 bg-amber-100 rounded-full mx-auto mt-4 overflow-hidden">
-        <div class="h-full bg-gradient-to-r from-kasavu via-templegold to-maroon rounded-full animate-[shimmerGold_1.5s_infinite]"></div>
-      </div>
-    </div>
+<body>
+  <div class="opening-screen" id="opening" aria-label="Wedding invitation opening">
+    <div class="opening-backdrop" aria-hidden="true"></div>
+    <p class="eyebrow">An auspicious beginning</p>
+    <div class="opening-art"><img class="ganapathy" src="ganapathy.png" width="2500" height="2500" alt="Lord Ganapathy in golden line art" fetchpriority="high"></div>
+    <p class="opening-invocation ml" lang="ml">ഓം ശ്രീ ഗണേശായ നമഃ</p>
+    <p class="opening-blessing">With divine grace and our families' blessings</p>
+    <div class="opening-names" aria-label="Visakh and Arya"><span class="first-name">Visakh</span><em>&amp;</em><span class="second-name">Arya</span></div>
+    <p class="opening-date"><i data-lucide="calendar-days" aria-hidden="true"></i>14 December 2026 · 11:30 AM</p>
+    <button type="button" class="button" id="open-invitation"><i data-lucide="music-2"></i>Open invitation<i data-lucide="arrow-right"></i></button>
   </div>
-
-  <!-- Interactive Falling Flower Petals Canvas -->
-  <canvas id="petals-canvas"></canvas>
-
-  <!-- Left Rotating Background Mandala -->
-  <svg id="mandala-left" class="mandala-bg -top-24 -left-32 w-[340px] md:w-[480px] h-[340px] md:h-[480px] text-[#C59A3F]" viewBox="0 0 500 500" fill="none" stroke="currentColor" stroke-width="1.5">
-    <circle cx="250" cy="250" r="235" stroke-dasharray="6,6"/>
-    <circle cx="250" cy="250" r="190"/>
-    <circle cx="250" cy="250" r="140" stroke-dasharray="4,4"/>
-    <circle cx="250" cy="250" r="85"/>
-    <g transform="translate(250,250)">
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(30)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(60)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(90)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(120)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(150)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(180)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(210)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(240)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(270)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(300)" fill="none"/>
-      <path d="M0,0 Q30,-90 0,-180 Q-30,-90 0,0" transform="rotate(330)" fill="none"/>
-    </g>
-  </svg>
-
-  <!-- Right Rotating Background Mandala -->
-  <svg id="mandala-right" class="mandala-bg top-[45%] -right-36 w-[360px] md:w-[540px] h-[360px] md:h-[540px] text-[#C59A3F]" viewBox="0 0 500 500" fill="none" stroke="currentColor" stroke-width="1.5">
-    <circle cx="250" cy="250" r="235" stroke-dasharray="8,8"/>
-    <circle cx="250" cy="250" r="180"/>
-    <circle cx="250" cy="250" r="110"/>
-    <circle cx="250" cy="250" r="50"/>
-    <g transform="translate(250,250)">
-      <polygon points="0,-210 50,-100 190,-90 85,-10 130,120 0,60 -130,120 -85,-10 -190,-90 -50,-100" stroke-width="1.2"/>
-      <polygon points="0,210 50,100 190,90 85,10 130,-120 0,-60 -130,-120 -85,10 -190,90 -50,100" stroke-width="1.2" transform="rotate(45)"/>
-    </g>
-  </svg>
-
-  <!-- Top Kasavu Ribbon Header -->
-  <div class="kasavu-border sticky top-0 z-40"></div>
-
-  <!-- Audio Floating Controller -->
-  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-    <button id="audio-btn" class="flex items-center gap-2 bg-maroon hover:bg-deepmaroon text-white text-xs md:text-sm font-medium px-4 py-2.5 rounded-full shadow-xl border border-kasavulight/40 transition-all duration-300 hover:scale-105" title="Play Temple Ambient Drone">
-      <i id="audio-icon" data-lucide="music" class="w-4 h-4 text-kasavulight"></i>
-      <span id="audio-text">പ്രണവ മന്ത്രം • Music</span>
-    </button>
+  <div class="petal-field" aria-hidden="true">
+    <div class="main-leaves"><i></i><i></i><i></i><i></i></div>
+    <div class="scroll-chakra"></div>
+    <span style="--left:4%;--delay:0s;--duration:23s"></span><span style="--left:13%;--delay:1.1s;--duration:28s"></span><span style="--left:22%;--delay:2.2s;--duration:25s"></span><span style="--left:31%;--delay:3.3s;--duration:30s"></span><span style="--left:40%;--delay:4.4s;--duration:24s"></span><span style="--left:49%;--delay:5.5s;--duration:27s"></span><span style="--left:58%;--delay:6.6s;--duration:29s"></span><span style="--left:67%;--delay:7.7s;--duration:26s"></span><span style="--left:76%;--delay:8.8s;--duration:22s"></span><span style="--left:85%;--delay:9.9s;--duration:31s"></span><span style="--left:92%;--delay:11s;--duration:28s"></span><span style="--left:97%;--delay:12.1s;--duration:24s"></span>
+    <span style="--left:9%;--delay:1.7s;--duration:32s"></span><span style="--left:27%;--delay:3.8s;--duration:26s"></span><span style="--left:45%;--delay:5.9s;--duration:29s"></span><span style="--left:63%;--delay:8s;--duration:24s"></span><span style="--left:79%;--delay:10.1s;--duration:30s"></span><span style="--left:89%;--delay:12.2s;--duration:27s"></span>
+    <div class="floral-sprig"><i style="--top:16px"></i><i style="--top:46px"></i><i style="--top:82px"></i><i style="--top:117px"></i><i style="--top:152px"></i><i style="--top:185px"></i></div>
+    <div class="floral-sprig right"><i style="--top:16px"></i><i style="--top:46px"></i><i style="--top:82px"></i><i style="--top:117px"></i><i style="--top:152px"></i><i style="--top:185px"></i></div>
   </div>
-
-  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-14">
-    
-    <!-- Sacred Invocation Header -->
-    <header class="text-center space-y-4">
-      <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-amber-50/80 border border-kasavu/30 text-maroon text-xs sm:text-sm font-semibold tracking-wider shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-kasavu animate-ping"></span>
-        <span>ഓം ശ്രീ ഗണേശായ നമഃ</span>
-        <span class="text-kasavu">•</span>
-        <span>ആറ്റുകാലമ്മേ ശരണം</span>
-      </div>
-
-      <!-- Intricate Golden Line Ganapati Vector Motif -->
-      <div class="flex justify-center my-4">
-        <div class="relative group p-4 rounded-full bg-gradient-to-b from-amber-50 to-orange-50/30 border border-kasavu/30 shadow-inner">
-          <svg class="w-20 h-24 md:w-24 md:h-28 text-kasavu filter drop-shadow-[0_2px_12px_rgba(197,154,63,0.45)] transition-transform duration-500 hover:scale-105" viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M38 22 L50 8 L62 22 Z" fill="#FBF3DC" stroke="#C59A3F" stroke-width="2"/>
-            <path d="M30 22 Q50 16 70 22" />
-            <circle cx="50" cy="14" r="2.5" fill="#6B1D2F" stroke="none"/>
-            <path d="M48 24 Q36 28 34 38 Q32 48 42 54 Q54 60 54 70 Q54 84 44 88 Q34 92 28 82 Q25 78 28 72" stroke="#B8860B" stroke-width="3"/>
-            <circle cx="26" cy="74" r="3.5" fill="#E5B94E" stroke="#8D6B1B" stroke-width="1"/>
-            <path d="M66 28 Q84 28 84 46 Q84 62 66 64" />
-            <path d="M68 36 Q78 38 76 52" stroke-dasharray="2,3" stroke-width="1.5"/>
-            <path d="M34 28 Q18 28 18 46 Q18 56 28 62" />
-            <path d="M52 34 Q58 35 60 38" stroke-width="2.5"/>
-            <line x1="44" y1="28" x2="56" y2="28" stroke="#6B1D2F" stroke-width="1.8"/>
-            <line x1="45" y1="31" x2="55" y2="31" stroke="#E5B94E" stroke-width="1.8"/>
-            <circle cx="50" cy="35" r="1.8" fill="#6B1D2F" stroke="none"/>
-            <path d="M42 58 L37 63" stroke-width="3" stroke="#FFF" />
-          </svg>
-        </div>
-      </div>
-
-      <div class="max-w-xl mx-auto text-center space-y-1 text-slate-700">
-        <p class="font-malayalam text-sm sm:text-base font-bold text-maroon tracking-wide">
-          “ വക്രതുണ്ഡ മഹാകായ സൂര്യകോടി സമപ്രഭ ।<br class="sm:hidden" /> നിർവിഘ്നം കുരു മേ ദേവ സർവ്വകാര്യേഷു സർവ്വദാ ॥ ”
-        </p>
-        <p class="font-cinzel text-xs text-muted tracking-widest text-amber-900/80 uppercase">
-          Divine Blessings of Lord Ganesha &amp; Attukal Bhagavathy
-        </p>
-      </div>
-
-      <div class="pt-3 pb-1">
-        <p class="font-serif uppercase tracking-[0.25em] text-xs md:text-sm text-kasavudark font-bold">
-          With the blessings of our elders and almighty
-        </p>
-        <p class="text-sm md:text-base text-slate-600 font-light mt-1 max-w-2xl mx-auto">
-          We cordially invite you with family and friends to share in our joy as we enter the sacred bond of matrimony.
-        </p>
-      </div>
-    </header>
-
-    <main class="mt-8 space-y-12">
-      
-      <!-- Hero Couple Banner Card -->
-      <section class="glass-card rounded-3xl p-6 sm:p-10 md:p-14 text-center relative overflow-hidden">
-        
-        <div class="space-y-4">
-          <span class="inline-block font-cinzel text-xs md:text-sm font-semibold tracking-[0.35em] text-maroon uppercase border-b border-kasavu/50 pb-1">
-            Matrimony
-          </span>
-          
-          <h1 class="text-4xl sm:text-6xl md:text-7xl font-rozha text-slate-900 tracking-tight leading-tight">
-            <span class="gold-shimmer">Visakh</span>
-            <span class="block sm:inline font-cinzelDeco text-2xl sm:text-4xl md:text-5xl text-maroon mx-2 my-1 sm:my-0 font-normal">&amp;</span>
-            <span class="gold-shimmer">Arya</span>
-          </h1>
-
-          <div class="font-malayalam text-xl sm:text-2xl font-bold text-slate-800 tracking-wide pt-1">
-            വിശാഖ് & ആര്യ
-          </div>
-        </div>
-
-        <!-- Hero Cartoon Illustration -->
-        <div class="max-w-xs sm:max-w-sm mx-auto my-6 rounded-2xl overflow-hidden border-4 border-amber-100 shadow-xl">
-          <img 
-            src="couple_traditional.png" 
-            alt="Visakh & Arya Traditional Attire" 
-            class="w-full h-auto object-cover"
-            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=60';" 
-          />
-        </div>
-
-        <!-- Traditional Saptapadi / Wedding Vow -->
-        <div class="relative max-w-2xl mx-auto my-6 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-amber-50/70 via-amber-100/40 to-amber-50/70 border-y-2 border-kasavu/40 shadow-sm">
-          <i data-lucide="quote" class="w-8 h-8 text-kasavu/40 mx-auto mb-2 rotate-180"></i>
-          <p class="font-malayalam text-base sm:text-lg md:text-xl font-bold text-maroon leading-relaxed">
-            “നിന്റെ വഴികൾ എന്റെ വഴികൾ, നിന്റെ ഹൃദയമിടിപ്പുകൾ എന്റെ പ്രാർത്ഥനകൾ, നിന്റെ പ്രിയപ്പെട്ടവർ എന്റെയും... ഒരുമയോടെ, സപ്തപദികളിലൂടെ അനന്തമായൊരു ദാമ്പത്യത്തിലേക്ക്.”
-          </p>
-          <div class="mt-4 pt-3 border-t border-kasavu/30 text-xs sm:text-sm text-slate-600 font-sans italic">
-            “Where you walk, I shall walk; your people shall be my people, and your prayers my own. Together, hand in hand, seven sacred steps into eternity.”
-          </div>
-        </div>
-
-        <!-- Date & Star Info Pill -->
-        <div class="inline-flex flex-wrap justify-center items-center gap-3 bg-white/90 border border-kasavu/40 px-5 py-2.5 rounded-full shadow-sm text-slate-700 font-medium text-xs sm:text-sm">
-          <span class="flex items-center gap-1.5 text-maroon font-bold">
-            <i data-lucide="calendar" class="w-4 h-4 text-kasavu"></i>
-            14th December 2026, Monday
-          </span>
-          <span class="text-kasavu">•</span>
-          <span class="flex items-center gap-1.5">
-            <i data-lucide="clock" class="w-4 h-4 text-kasavu"></i>
-            മുഹൂർത്തം : 10:00 AM
-          </span>
-          <span class="text-kasavu">•</span>
-          <span class="bg-amber-100 text-maroon px-2 py-0.5 rounded-md text-[11px] font-bold">
-            മകയിരം / Makayiram
-          </span>
-        </div>
-
-        <!-- Countdown Timer -->
-        <div class="mt-8 max-w-xl mx-auto">
-          <p class="text-xs uppercase tracking-[0.2em] font-semibold text-slate-500 mb-4">
-            Auspicious Moment In
-          </p>
-          <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
-            <div class="bg-gradient-to-b from-white to-amber-50/50 p-3 sm:p-4 rounded-xl border border-kasavu/30 shadow-sm">
-              <span id="days" class="block font-cinzel text-2xl sm:text-4xl font-extrabold text-maroon">00</span>
-              <span class="text-[10px] sm:text-xs font-semibold uppercase text-slate-500 tracking-wider">Days</span>
-            </div>
-            <div class="bg-gradient-to-b from-white to-amber-50/50 p-3 sm:p-4 rounded-xl border border-kasavu/30 shadow-sm">
-              <span id="hours" class="block font-cinzel text-2xl sm:text-4xl font-extrabold text-maroon">00</span>
-              <span class="text-[10px] sm:text-xs font-semibold uppercase text-slate-500 tracking-wider">Hours</span>
-            </div>
-            <div class="bg-gradient-to-b from-white to-amber-50/50 p-3 sm:p-4 rounded-xl border border-kasavu/30 shadow-sm">
-              <span id="mins" class="block font-cinzel text-2xl sm:text-4xl font-extrabold text-maroon">00</span>
-              <span class="text-[10px] sm:text-xs font-semibold uppercase text-slate-500 tracking-wider">Minutes</span>
-            </div>
-            <div class="bg-gradient-to-b from-white to-amber-50/50 p-3 sm:p-4 rounded-xl border border-kasavu/30 shadow-sm">
-              <span id="secs" class="block font-cinzel text-2xl sm:text-4xl font-extrabold text-maroon">00</span>
-              <span class="text-[10px] sm:text-xs font-semibold uppercase text-slate-500 tracking-wider">Seconds</span>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- Family Particulars -->
-      <section class="space-y-6">
-        <div class="text-center">
-          <div class="inline-flex items-center gap-2 text-kasavudark text-xs uppercase tracking-widest font-bold">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-            <span>Two Hearts • Two Families</span>
-            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-          </div>
-          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900 mt-1">വരനും വധുവും</h2>
-          <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-kasavu to-transparent mx-auto mt-2"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <!-- Groom Family Card -->
-          <div class="glass-card rounded-2xl p-6 sm:p-8 relative border-t-4 border-t-kasavu hover:shadow-xl transition-all duration-300">
-            <span class="inline-block bg-amber-100 text-maroon text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
-              The Groom • വരൻ
-            </span>
-            <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900">Visakh Vijayakumar</h3>
-            <p class="font-malayalam text-lg font-bold text-kasavudark">വിശാഖ് വിജയകുമാർ</p>
-            
-            <div class="mt-4 space-y-2 text-sm text-slate-600">
-              <p>
-                Son of <strong class="text-slate-800">Late Vijayakumar B</strong> &amp; <strong class="text-slate-800">Smt. Sulochana S</strong>
-              </p>
-              <p class="font-malayalam text-xs text-slate-500">
-                പരേതനായ വിജയകുമാർ ബി., സുലോചന എസ്. ദമ്പതികളുടെ മകൻ
-              </p>
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-dashed border-kasavu/30 flex items-start gap-3 text-slate-700 text-sm">
-              <div class="p-2 rounded-full bg-amber-50 border border-kasavu/30 text-kasavu shrink-0 mt-0.5">
-                <i data-lucide="home" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-slate-800">Sulubhavanam</p>
-                <p>Kodumon, Pathanamthitta — 691555</p>
-                <p class="font-malayalam text-xs text-slate-500 mt-0.5">സുലുഭവനം, കൊടുമൺ, പത്തനംതിട്ട</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bride Family Card -->
-          <div class="glass-card rounded-2xl p-6 sm:p-8 relative border-t-4 border-t-maroon hover:shadow-xl transition-all duration-300">
-            <span class="inline-block bg-rose-100 text-maroon text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
-              The Bride • വധു
-            </span>
-            <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900">Arya Narayanan</h3>
-            <p class="font-malayalam text-lg font-bold text-maroon">ആര്യ നാരായണൻ</p>
-            
-            <div class="mt-4 space-y-2 text-sm text-slate-600">
-              <p>
-                Daughter of <strong class="text-slate-800">Sri. D. Narayanan</strong> &amp; <strong class="text-slate-800">Smt. Vahitha P</strong>
-              </p>
-              <p class="font-malayalam text-xs text-slate-500">
-                ഡി. നാരായണൻ, വാഹിത പി. ദമ്പതികളുടെ മകൾ
-              </p>
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-dashed border-kasavu/30 flex items-start gap-3 text-slate-700 text-sm">
-              <div class="p-2 rounded-full bg-rose-50 border border-maroon/20 text-maroon shrink-0 mt-0.5">
-                <i data-lucide="home" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-slate-800">Tagore Gardens</p>
-                <p>Kumarapuram, Thiruvananthapuram — 695011</p>
-                <p class="font-malayalam text-xs text-slate-500 mt-0.5">ടാഗോർ ഗാർഡൻസ്, കുമാരപുരം, തിരുവനന്തപുരം</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Digital Lamp Blessing -->
-      <section class="glass-card rounded-3xl p-6 sm:p-10 text-center border-2 border-kasavu/40 bg-gradient-to-b from-amber-50/40 via-white to-amber-50/20 shadow-md">
-        <div class="max-w-xl mx-auto space-y-3">
-          <span class="bg-amber-200/60 text-amber-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-            മംഗള ദീപം • Digital Blessing
-          </span>
-          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-maroon">Light the Auspicious Lamp</h2>
-          <p class="text-sm text-slate-600">
-            Join hands with us in invoking divine light and peace. Click to light the sacred Nilavilakku and shower your blessings upon Visakh &amp; Arya.
-          </p>
-
-          <div class="py-6 flex flex-col items-center justify-center">
-            <div class="relative cursor-pointer select-none transition-transform active:scale-95" id="lamp-container" onclick="lightLamp()">
-              <div id="flame-group" class="lamp-flame transition-opacity duration-700 opacity-100 flex flex-col items-center">
-                <div class="w-10 h-10 -mb-6 rounded-full bg-amber-400/40 filter blur-md pointer-events-none"></div>
-                <svg class="w-7 h-12" viewBox="0 0 30 60" fill="none">
-                  <path d="M15 0 C22 20 28 35 28 46 C28 54 22 60 15 60 C8 60 2 54 2 46 C2 35 8 20 15 0 Z" fill="url(#flameGrad)" />
-                  <path d="M15 15 C19 28 22 38 22 46 C22 51 19 55 15 55 C11 55 8 51 8 46 C8 38 11 28 15 15 Z" fill="#FFF8C4" />
-                  <defs>
-                    <linearGradient id="flameGrad" x1="15" y1="0" x2="15" y2="60" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#FFF5B8" />
-                      <stop offset="0.3" stop-color="#FFB300" />
-                      <stop offset="0.75" stop-color="#FF5722" />
-                      <stop offset="1" stop-color="#D50000" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-
-              <!-- Nilavilakku Brass Lamp -->
-              <svg class="w-24 h-48 md:w-28 md:h-52 text-amber-600 filter drop-shadow-md" viewBox="0 0 100 200" fill="none">
-                <path d="M48 20 L50 12 L52 20 Z" fill="#C59A3F" stroke="#8D6B1B" stroke-width="1.5"/>
-                <ellipse cx="50" cy="24" rx="14" ry="4" fill="#E5B94E" stroke="#8D6B1B" stroke-width="1.5"/>
-                <ellipse cx="50" cy="30" rx="28" ry="7" fill="#C59A3F" stroke="#8D6B1B" stroke-width="1.5"/>
-                <path d="M22 30 Q50 42 78 30 Q50 36 22 30 Z" fill="#997322"/>
-                <rect x="46" y="37" width="8" height="12" rx="2" fill="#E5B94E" stroke="#8D6B1B" stroke-width="1"/>
-                <ellipse cx="50" cy="54" rx="12" ry="4" fill="#C59A3F" stroke="#8D6B1B" stroke-width="1.2"/>
-                <path d="M44 58 Q42 85 45 110 Q50 115 55 110 Q58 85 56 58 Z" fill="#D4AF37" stroke="#8D6B1B" stroke-width="1.5"/>
-                <ellipse cx="50" cy="85" rx="10" ry="4" fill="#E5B94E" stroke="#8D6B1B"/>
-                <ellipse cx="50" cy="115" rx="16" ry="5" fill="#C59A3F" stroke="#8D6B1B" stroke-width="1.5"/>
-                <rect x="45" y="120" width="10" height="18" fill="#E5B94E" stroke="#8D6B1B"/>
-                <path d="M30 138 Q50 132 70 138 L82 178 Q50 185 18 178 Z" fill="#C59A3F" stroke="#8D6B1B" stroke-width="2"/>
-                <ellipse cx="50" cy="180" rx="36" ry="9" fill="#997322" stroke="#6B1D2F" stroke-width="2"/>
-                <ellipse cx="50" cy="155" rx="26" ry="6" stroke="#FFF4D0" stroke-width="1"/>
-              </svg>
-            </div>
-
-            <button onclick="lightLamp()" class="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white font-bold px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95">
-              <i data-lucide="flame" class="w-4 h-4 text-amber-200"></i>
-              <span id="light-btn-text">ദീപം തെളിയിക്കൂ • Shower Blessings</span>
-            </button>
-            <p class="text-xs text-slate-500 mt-2 font-medium">
-              <span id="blessing-count" class="font-bold text-maroon text-sm">348</span> lamps lit with prayers today
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Venue & Timing -->
-      <section class="glass-card rounded-3xl p-6 sm:p-10 md:p-12 relative overflow-hidden border-2 border-kasavu/50">
-        <div class="text-center max-w-2xl mx-auto space-y-4">
-          <span class="inline-block bg-maroon text-kasavulight text-xs uppercase font-bold tracking-[0.25em] px-4 py-1.5 rounded-full shadow-sm">
-            വിവാഹ മുഹൂർത്തം &amp; വേദി
-          </span>
-
-          <h2 class="font-cinzel text-3xl sm:text-4xl font-extrabold text-slate-900">
-            Attukal Bhagavathy Temple
-          </h2>
-          <p class="font-malayalam text-xl font-bold text-maroon">
-            ആറ്റുകാൽ ഭഗവതി ക്ഷേത്രം, തിരുവനന്തപുരം
-          </p>
-          <p class="text-slate-600 text-sm sm:text-base">
-            Manacaud, Thiruvananthapuram, Kerala — 695009
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6 text-left">
-            <div class="p-4 rounded-xl bg-amber-50/70 border border-kasavu/30 flex items-start gap-3">
-              <div class="p-2.5 rounded-lg bg-maroon text-kasavulight shrink-0">
-                <i data-lucide="clock" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <p class="font-cinzel font-bold text-slate-800 text-sm">Auspicious Muhurtham</p>
-                <p class="text-xs text-slate-600 mt-0.5">14th December 2026, 10:00 AM</p>
-                <p class="font-malayalam text-xs text-maroon font-bold mt-1">രാവിലെ 10:00 മണിക്ക് താലികെട്ട്</p>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-xl bg-amber-50/70 border border-kasavu/30 flex items-start gap-3">
-              <div class="p-2.5 rounded-lg bg-tealaccent text-white shrink-0">
-                <i data-lucide="utensils" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <p class="font-cinzel font-bold text-slate-800 text-sm">Traditional Sadya (സദ്യ)</p>
-                <p class="text-xs text-slate-600 mt-0.5">Followed immediately at the Auditorium</p>
-                <p class="font-malayalam text-xs text-tealaccent font-bold mt-1">വിഭവസമൃദ്ധമായ കല്യാണസദ്യ</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <a href="https://maps.google.com/?q=Attukal+Bhagavathy+Temple,+Manacaud,+Thiruvananthapuram" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-maroon hover:bg-deepmaroon text-white font-semibold text-sm px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
-              <i data-lucide="map-pin" class="w-4 h-4 text-kasavulight"></i>
-              <span>Get Directions / Google Maps</span>
-            </a>
-
-            <a id="cal-link" href="#" onclick="addToCalendar(event)" class="inline-flex items-center gap-2 bg-white hover:bg-amber-50/80 text-slate-800 border border-kasavu font-semibold text-sm px-6 py-3 rounded-full shadow-sm hover:shadow transition-all duration-300">
-              <i data-lucide="calendar-plus" class="w-4 h-4 text-kasavudark"></i>
-              <span>Add to Calendar</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Gallery with Linked Images -->
-      <section class="space-y-6">
-        <div class="text-center">
-          <span class="text-xs font-bold uppercase tracking-widest text-kasavudark">Portraits of Love</span>
-          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900 mt-1">ചിത്ര ശില്പങ്ങൾ • The Gallery</h2>
-          <div class="w-20 h-0.5 bg-kasavu/50 mx-auto mt-2"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <!-- Portrait 1: Traditional Attire -->
-          <div class="glass-card rounded-2xl overflow-hidden border border-kasavu/40 group hover:shadow-xl transition-all">
-            <div class="relative h-80 bg-slate-100 overflow-hidden">
-              <img 
-                src="couple_traditional.png" 
-                alt="Traditional Attire Portrait" 
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1609357605129-26f69add5d6e?w=800&auto=format&fit=crop&q=60';"
-              />
-              <div class="absolute bottom-3 inset-x-0 px-4 text-center">
-                <span class="inline-block bg-white/95 text-maroon text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
-                  Traditional Kerala Mundu &amp; Saree
-                </span>
-              </div>
-            </div>
-            <div class="p-4 text-center">
-              <h4 class="font-cinzel font-bold text-sm text-slate-800">ഐശ്വര്യം • Temple Kasavu</h4>
-              <p class="text-xs text-slate-500 mt-1">Draped in tradition, pure gold zari borders and temple blooms.</p>
-            </div>
-          </div>
-
-          <!-- Portrait 2: Evening Garden Theme -->
-          <div class="glass-card rounded-2xl overflow-hidden border border-kasavu/40 group hover:shadow-xl transition-all">
-            <div class="relative h-80 bg-slate-100 overflow-hidden">
-              <img 
-                src="couple_garden.png" 
-                alt="Evening Garden Theme Portrait" 
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop&q=60';"
-              />
-              <div class="absolute bottom-3 inset-x-0 px-4 text-center">
-                <span class="inline-block bg-white/95 text-tealaccent text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
-                  Evening Garden Theme
-                </span>
-              </div>
-            </div>
-            <div class="p-4 text-center">
-              <h4 class="font-cinzel font-bold text-sm text-slate-800">സന്ധ്യാ രാഗം • Evening Elegance</h4>
-              <p class="text-xs text-slate-500 mt-1">Deep teal sari, sherwani &amp; fairy-lit floral gazebos.</p>
-            </div>
-          </div>
-
-          <!-- Portrait 3: Shadowbox Keepsake -->
-          <div class="glass-card rounded-2xl overflow-hidden border border-kasavu/40 group hover:shadow-xl transition-all">
-            <div class="relative h-80 bg-slate-100 overflow-hidden">
-              <img 
-                src="couple_framed.png" 
-                alt="3D Shadowbox Art Portrait" 
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=60';"
-              />
-              <div class="absolute bottom-3 inset-x-0 px-4 text-center">
-                <span class="inline-block bg-white/95 text-amber-900 text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
-                  Handcrafted Caricature Art
-                </span>
-              </div>
-            </div>
-            <div class="p-4 text-center">
-              <h4 class="font-cinzel font-bold text-sm text-slate-800">സ്മൃതി • The 3D Shadowbox</h4>
-              <p class="text-xs text-slate-500 mt-1">A timeless keepsake capturing smile, laughter and love.</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Virtual Guestbook -->
-      <section class="glass-card rounded-3xl p-6 sm:p-10 border-2 border-kasavu/40 relative">
-        <div class="text-center max-w-xl mx-auto space-y-2">
-          <span class="bg-amber-100 text-maroon text-xs uppercase font-bold tracking-widest px-3 py-1 rounded-full">
-            പ്രാർത്ഥനകളും ആശംസകളും
-          </span>
-          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-slate-900">Virtual Guestbook &amp; Wishes</h2>
-          <p class="text-xs sm:text-sm text-slate-600">
-            Pen your blessings, congratulations, and affectionate wishes for the bride and groom.
-          </p>
-        </div>
-
-        <form id="wish-form" onsubmit="submitWish(event)" class="max-w-xl mx-auto mt-6 space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Your Name • പേര്</label>
-              <input type="text" id="guest-name" required placeholder="e.g. Radhakrishnan Nair" class="w-full px-4 py-2.5 rounded-xl border border-kasavu/40 focus:outline-none focus:ring-2 focus:ring-kasavu text-sm bg-white/90" />
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">From / Location • സ്ഥലം</label>
-              <input type="text" id="guest-city" placeholder="e.g. Trivandrum / Kodumon" class="w-full px-4 py-2.5 rounded-xl border border-kasavu/40 focus:outline-none focus:ring-2 focus:ring-kasavu text-sm bg-white/90" />
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Blessing Message • ആശംസ</label>
-            <textarea id="guest-message" required rows="3" placeholder="May your lives together be blessed with endless happiness, peace and prosperity..." class="w-full px-4 py-2.5 rounded-xl border border-kasavu/40 focus:outline-none focus:ring-2 focus:ring-kasavu text-sm bg-white/90"></textarea>
-          </div>
-
-          <div class="text-center">
-            <button type="submit" class="inline-flex items-center gap-2 bg-maroon hover:bg-deepmaroon text-white font-semibold text-sm px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
-              <i data-lucide="send" class="w-4 h-4 text-kasavulight"></i>
-              <span>Send Your Blessings</span>
-            </button>
-          </div>
-        </form>
-
-        <div class="mt-10 pt-6 border-t border-kasavu/30 max-w-2xl mx-auto">
-          <h4 class="text-xs uppercase font-bold text-slate-500 tracking-wider text-center mb-4">Heartfelt Messages</h4>
-          <div id="wishes-list" class="space-y-3 max-h-72 overflow-y-auto pr-2">
-            <div class="p-3.5 rounded-xl bg-amber-50/70 border border-kasavu/20 text-xs sm:text-sm">
-              <div class="flex justify-between font-bold text-maroon mb-1">
-                <span>മുത്തശ്ശിയും കുടുംബവും</span>
-                <span class="text-[11px] text-slate-400">Blessings</span>
-              </div>
-              <p class="text-slate-700">“ആറ്റുകാലമ്മയുടെ അനുഗ്രഹം എന്നും നിങ്ങളുടെ ദാമ്പത്യത്തിൽ ഉണ്ടാകട്ടെ. ഹൃദയം നിറഞ്ഞ വിവാഹമംഗളാശംസകൾ!”</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-16 text-center space-y-6 pb-12">
-      <div class="flex items-center justify-center gap-4 text-kasavu">
-        <div class="h-0.5 w-16 bg-gradient-to-r from-transparent to-kasavu"></div>
-        <svg class="w-6 h-6 text-kasavu" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" />
-        </svg>
-        <div class="h-0.5 w-16 bg-gradient-to-l from-transparent to-kasavu"></div>
-      </div>
-
-      <div class="max-w-xl mx-auto px-4">
-        <p class="font-malayalam text-base sm:text-lg font-bold text-maroon leading-relaxed">
-          “ സർവ്വമംഗള മാംഗല്യേ ശിവേ സർവ്വാർത്ഥ സാധികേ ।<br />
-          ശരണ്യേ ത്ര്യംബകേ ഗൗരീ നാരായണീ നമോസ്തുതേ ॥ ”
-        </p>
-        <p class="text-xs text-slate-500 font-serif italic mt-2">
-          May the divine grace of Goddess Attukal Bhagavathy bless this sacred union forever.
-        </p>
-      </div>
-
-      <div class="space-y-1 text-xs text-slate-600">
-        <p class="font-semibold text-slate-800">With Best Compliments &amp; Prayers from</p>
-        <p>Vijayakumar Family, Sulubhavanam &amp; Narayanan Family, Tagore Gardens</p>
-        <p class="text-kasavudark font-bold pt-2">#VisakhWedsArya • 14 December 2026</p>
-      </div>
-    </footer>
-
-  </div>
-
-  <div class="kasavu-border"></div>
-
+  <a href="#invitation" class="skip button">Skip to invitation</a>
+  <header class="topbar"><a class="monogram" href="#home" aria-label="Visakh and Arya, home">V<em>&amp;</em>A</a><nav class="nav" aria-label="Main navigation"><a class="nav-story" href="#invitation">Invitation</a><a href="#celebration">Wedding day</a><a href="#respond" class="nav-rsvp">RSVP &amp; wishes</a></nav></header>
+  <main>
+    <section class="hero" id="home" aria-label="Visakh and Arya's wedding">
+      <div class="hero-images"><div class="hero-photo"><img src="couple_traditional.png" alt="Visakh and Arya illustrated in traditional Kerala wedding attire" fetchpriority="high" width="1792" height="2390"></div></div>
+      <div class="hero-ganapathy" role="img" aria-label="Lord Ganapathy"></div><p class="hero-invocation ml" lang="ml">ഓം ശ്രീ ഗണേശായ നമഃ</p><div class="hero-copy"><p class="eyebrow">Together with our families</p><h1><span class="hero-first-name">Visakh</span> <em>&amp;</em> <span class="hero-second-name">Arya</span></h1><p class="ml" lang="ml">വിശാഖ് &amp; ആര്യ</p><p>Our wedding, with your blessings.</p></div><a href="#invitation" class="icon-button hero-down" aria-label="Read the invitation" title="Read the invitation"><i data-lucide="arrow-down"></i></a>
+    </section>
+    <div class="date-strip"><span><i data-lucide="calendar-days"></i>Monday, 14 December 2026</span><span class="separator" aria-hidden="true"></span><span><i data-lucide="clock-3"></i>11:30 AM IST</span><span class="separator" aria-hidden="true"></span><span><i data-lucide="map-pin"></i>Thiruvananthapuram, Kerala</span></div>
+    <section class="section wrap intro reveal" id="invitation"><p class="eyebrow ml" lang="ml">വിവാഹ ക്ഷണപത്രിക</p><h2>A sacred occasion.<br><em>Your presence, a blessing.</em></h2><p>With the blessings of Lord Ganesha, Lord Padmanabha and our elders, our families warmly invite you to our marriage. Join us for the auspicious muhurtham and a traditional Kerala wedding sadya.</p><p class="ml" lang="ml">ഞങ്ങളുടെ വിവാഹത്തിൽ സകുടുംബം പങ്കുചേർന്ന് അനുഗ്രഹിക്കുവാൻ സ്നേഹപൂർവം ക്ഷണിക്കുന്നു.</p><div class="countdown" aria-label="Time until our wedding"><div><strong id="days">00</strong><span>Days</span></div><div><strong id="hours">00</strong><span>Hours</span></div><div><strong id="mins">00</strong><span>Minutes</span></div><div><strong id="secs">00</strong><span>Seconds</span></div></div><p id="countdown-note" hidden>Our wedding day is here. Thank you for your blessings.</p></section>
+    <section class="family section wrap reveal" aria-label="Our families"><div class="family-person"><p class="eyebrow">The groom · വരൻ</p><h3>Visakh Vijayakumar</h3><p class="ml" lang="ml">വിശാഖ് വിജയകുമാർ</p><p>Son of Late Vijayakumar B<br>&amp; Smt. Sulochana S</p><address>Sulubhavanam, Kodumon<br>Pathanamthitta, Kerala 691555</address></div><span class="family-amp" aria-hidden="true">&amp;</span><div class="family-person"><p class="eyebrow">The bride · വധു</p><h3>Arya Narayanan</h3><p class="ml" lang="ml">ആര്യ നാരായണൻ</p><p>Daughter of Sri. D. Narayanan<br>&amp; Smt. Vahitha P</p><address>Thiruvathira, Kattumpuram, Kallara PO<br>Thiruvananthapuram, Kerala 695608</address></div></section>
+    <section class="hand-scene" id="our-story"><div class="hand-art"><div class="hand-art-inner"><img src="couple_garden.png" alt="An illustration of Visakh gently holding Arya's hands in a flower-filled garden" loading="lazy"><img class="hands-detail" src="couple_garden.png" alt="" aria-hidden="true" loading="lazy"></div></div><div class="wrap"><div class="hand-scene-copy reveal"><p class="eyebrow ml" lang="ml">മംഗളാശംസകളോടെ</p><h2>Two families.<br><em>One auspicious<br>beginning.</em></h2><p>With the love of our families and the blessings of everyone dear to us, we begin our life together.</p><p class="ml" lang="ml">സ്നേഹവും അനുഗ്രഹവും എന്നും കൂട്ടായി.</p><div class="blessing" id="blessing"><button class="icon-button" id="blessing-button" type="button" title="Send a blessing" aria-label="Send a blessing" aria-pressed="false"><i data-lucide="flame"></i></button><span id="blessing-label">With your love &amp; blessings</span></div><p id="blessing-status" class="status" role="status"></p></div></div></section>
+    <section class="venue section" id="celebration"><div class="wrap reveal"><div class="venue-top"><div><p class="eyebrow">Our wedding day</p><h2>A sacred beginning.<br><em>A joyful celebration.</em></h2></div><p class="venue-date">14 December 2026<span>Monday · 11:30 AM IST</span></p></div><div class="venue-grid"><article class="venue-detail"><div class="number"><i data-lucide="landmark" aria-hidden="true"></i>The ceremony</div><h3>Sree Padmanabhaswamy Temple</h3><p class="ml" lang="ml">ശ്രീ പത്മനാഭസ്വാമി ക്ഷേത്രം</p><p>East Fort, Thiruvananthapuram, Kerala<br>Muhurtham at 11:30 AM</p><a href="https://www.google.com/maps/search/?api=1&amp;query=Sree+Padmanabhaswamy+Temple+Thiruvananthapuram" target="_blank" rel="noopener noreferrer"><i data-lucide="map-pin" aria-hidden="true"></i>Temple directions<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></article><article class="venue-detail"><div class="number"><i data-lucide="building-2" aria-hidden="true"></i>The celebration</div><h3>Sree Ananthasayanam Kalyana Mandapam</h3><p class="ml" lang="ml">ശ്രീ അനന്തശയനം കല്യാണ മണ്ഡപം</p><p>Thiruvananthapuram, Kerala<br>Wedding celebration &amp; traditional sadya</p><a href="https://www.google.com/maps/search/?api=1&amp;query=Sree+Ananthasayanam+Kalyana+Mandapam+Thiruvananthapuram" target="_blank" rel="noopener noreferrer"><i data-lucide="map-pin" aria-hidden="true"></i>Venue directions<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></article></div><div class="venue-footer"><button class="button" id="calendar-button" type="button"><i data-lucide="calendar-plus"></i>Add to calendar</button></div></div></section>
+    <section class="response-section section" id="respond"><div class="wrap response-grid"><div class="response-heading reveal"><p class="eyebrow">You &amp; your family</p><h2>Join us for<br><em>our wedding.</em></h2><p>We look forward to welcoming you and your family. Please let us know who will be joining us.</p></div><div><div class="response-tabs" role="tablist" aria-label="Your response"><button type="button" id="rsvp-tab" role="tab" aria-selected="true" aria-controls="rsvp-panel">Family RSVP</button><button type="button" id="wish-tab" role="tab" aria-selected="false" aria-controls="wish-panel" tabindex="-1">Send wishes</button></div>
+      <div id="rsvp-panel" role="tabpanel" aria-labelledby="rsvp-tab"><form id="rsvp-form"><div class="field-row names"><label>Your name / family representative<input name="name" autocomplete="name" required maxlength="100" placeholder="Full name"></label><label>Coming from<input name="city" autocomplete="address-level2" maxlength="100" placeholder="Town or city"></label></div><div class="field-row"><label>Will your family join us?<select name="attendance"><option value="yes">Yes, we will attend</option><option value="no">Unable to attend</option><option value="maybe">Will confirm soon</option></select></label><label id="guest-count-label">Total attending, including you<input name="guests" type="number" inputmode="numeric" min="1" max="12" value="1" required></label></div><label id="family-members-label">Names of everyone attending<textarea name="familyMembers" required maxlength="600" rows="3" placeholder="Include your name and the family members joining you"></textarea></label><label>Anything we should know? <span class="muted">(optional)</span><textarea name="note" maxlength="300" rows="2" placeholder="Dietary needs or a note for our families"></textarea></label><label class="consent"><input type="checkbox" required>I agree to share these details with the couple for wedding planning.</label><button type="submit" class="button"><i data-lucide="check"></i>Send family RSVP</button><p class="status" id="rsvp-status" role="status"></p></form></div>
+      <div id="wish-panel" role="tabpanel" aria-labelledby="wish-tab" hidden><form id="wish-form"><div class="field-row names"><label>Your name<input name="name" autocomplete="name" required maxlength="100" placeholder="Full name"></label><label>Coming from<input name="city" autocomplete="address-level2" maxlength="100" placeholder="Town or city"></label></div><label>Your wish<textarea name="message" required maxlength="2000" rows="4" placeholder="A little love for our next chapter..."></textarea></label><label class="consent"><input type="checkbox" required>I agree to share my name and message privately with the couple.</label><button type="submit" class="button"><i data-lucide="send"></i>Send your love</button><p class="status" id="wish-status" role="status"></p></form><div class="saved-wishes" id="saved-wishes" aria-label="Your wishes"></div></div>
+      <p class="form-note" id="storage-note"></p><button type="button" class="button secondary" id="retry-button" hidden><i data-lucide="refresh-cw"></i>Retry pending responses</button></div></div></section>
+  </main>
+  <footer class="footer"><p class="eyebrow">With the blessings of our elders</p><h2>Visakh <em>&amp;</em> Arya</h2><p class="ml" lang="ml">സ്നേഹത്തോടെ, ഞങ്ങളും ഞങ്ങളുടെ കുടുംബങ്ങളും</p><p>Vijayakumar Family, Sulubhavanam<br>&amp; Narayanan Family, Thiruvathira</p><p>14 December 2026 · Thiruvananthapuram</p><div class="footer-actions"><button class="icon-button" type="button" id="share-button" aria-label="Share invitation" title="Share invitation"><i data-lucide="share-2"></i></button><a class="icon-button" href="https://music.apple.com/us/album/pesamale/6794313440?i=6794313992" target="_blank" rel="noopener noreferrer" aria-label="Pesamale by Siri Xander and Arra Aria Khayal on Apple Music" title="Pesamale · Siri Xander & Arra Aria Khayal"><i data-lucide="music-2"></i></a><a class="icon-button" href="#home" aria-label="Back to top" title="Back to top"><i data-lucide="arrow-up"></i></a></div></footer>
+  <div class="music-player"><button class="icon-button" id="music-button" type="button" aria-label="Play Pesamale preview" title="Play Pesamale preview" aria-pressed="false"><i data-lucide="play"></i></button><div><div class="track-name">Pesamale <span class="muted" id="music-state">· Preview</span></div><div class="track-artist">Siri Xander &amp; Arra Aria Khayal</div></div><a class="music-link" href="https://music.apple.com/us/album/pesamale/6794313440?i=6794313992" target="_blank" rel="noopener noreferrer" title="Full song on Apple Music" aria-label="Listen to the full song on Apple Music"><i data-lucide="arrow-up-right"></i></a></div>
+  <audio id="song" preload="metadata" src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/61/e5/73/61e57386-fcad-ea54-2e51-20d14f56880c/mzaf_4603457977202265048.plus.aac.p.m4a"></audio>
+  <div class="toast" id="toast" role="status" hidden></div>
   <script>
-    // Remove Preloader after page loads
-    window.addEventListener('load', () => {
-      const preloader = document.getElementById('preloader');
-      if (preloader) {
-        setTimeout(() => {
-          preloader.style.opacity = '0';
-          setTimeout(() => { preloader.style.display = 'none'; }, 800);
-        }, 500);
-      }
+    const CONFIG = Object.freeze({ weddingDate:'2026-12-14T11:30:00+05:30', sheetId:'1MvysQUO7EtYQacQ0bCQnqZq4WBcDmdjtVBtB9YxNPkQ', appsScriptUrl:'https://script.google.com/macros/s/AKfycbw9BcexKTsma9P2dJiWFEEx04PPXCTLFVXSvTEzzunMEa3GkeRFy7wP5duwuZdOXCcCQw/exec', shareUrl:'https://leo84vvk.github.io/visakh-weds-arya/', storageKey:'visakh-arya-responses-v1' });
+    const select = selector => document.querySelector(selector);
+    const icons = () => window.lucide?.createIcons();
+    window.addEventListener('DOMContentLoaded',icons);
+    let toastTimer;
+    function toast(message) { select('#toast').textContent = message; select('#toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => { select('#toast').hidden = true; },6500); }
+    function countdown() {
+      const remaining = Math.max(0,new Date(CONFIG.weddingDate).getTime() - Date.now());
+      const units = { days:Math.floor(remaining / 86400000), hours:Math.floor(remaining / 3600000) % 24, mins:Math.floor(remaining / 60000) % 60, secs:Math.floor(remaining / 1000) % 60 };
+      Object.entries(units).forEach(([unit,value]) => { select('#' + unit).textContent = String(value).padStart(2,'0'); }); select('#countdown-note').hidden = remaining > 0;
+    }
+    countdown(); setInterval(countdown,1000);
+    select('#calendar-button').addEventListener('click', () => {
+      const reminders = ['P7D','P1D','PT3H'].flatMap(trigger => ['BEGIN:VALARM','ACTION:DISPLAY','TRIGGER:-' + trigger,'DESCRIPTION:Visakh & Arya wedding ceremony','END:VALARM']);
+      const calendar = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Visakh and Arya//Wedding//EN','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:visakh-arya-20261214@wedding.local','DTSTAMP:20260927T000000Z','DTSTART:20261214T060000Z','DTEND:20261214T083000Z','SUMMARY:Visakh & Arya - Wedding','LOCATION:Sree Ananthasayanam Kalyana Mandapam\\, Thiruvananthapuram','DESCRIPTION:Ceremony at Sree Padmanabhaswamy Temple at 11:30 AM IST.\\nCelebration at Sree Ananthasayanam Kalyana Mandapam.',...reminders,'END:VEVENT','END:VCALENDAR'].join('\r\n') + '\r\n';
+      const url = URL.createObjectURL(new Blob([calendar],{type:'text/calendar;charset=utf-8'})); const link = document.createElement('a'); link.href = url; link.download = 'Visakh-and-Arya.ics'; link.click(); setTimeout(() => URL.revokeObjectURL(url),1000);
     });
-
-    // Initialize Lucide Icons
-    lucide.createIcons();
-
-    // 1. Scroll-Reactive Mandalas
-    const mandalaLeft = document.getElementById('mandala-left');
-    const mandalaRight = document.getElementById('mandala-right');
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      if (mandalaLeft) mandalaLeft.style.transform = `rotate(${scrollY * 0.08}deg)`;
-      if (mandalaRight) mandalaRight.style.transform = `rotate(-${scrollY * 0.07}deg)`;
-    }, { passive: true });
-
-    // 2. Falling Petals
-    const canvas = document.getElementById('petals-canvas');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-
-    const petalCount = 28;
-    const petals = [];
-    const petalColors = [
-      { r: 235, g: 155, b: 20 },
-      { r: 250, g: 198, b: 38 },
-      { r: 255, g: 252, b: 242 },
-      { r: 240, g: 100, b: 80 }
-    ];
-
-    for (let i = 0; i < petalCount; i++) {
-      petals.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 7 + 5,
-        dx: Math.random() * 1.2 - 0.6,
-        dy: Math.random() * 1.5 + 0.8,
-        color: petalColors[Math.floor(Math.random() * petalColors.length)],
-        angle: Math.random() * Math.PI * 2,
-        angularSpeed: (Math.random() - 0.5) * 0.03,
-        opacity: Math.random() * 0.6 + 0.35
+    const motionPreference = matchMedia('(prefers-reduced-motion: reduce)'); let motionPaused = motionPreference.matches;
+    const handScene = select('.hand-scene'); let handScrollFrame = 0;
+    function updateHandScroll() {
+      handScrollFrame = 0;
+      if (motionPaused || motionPreference.matches || document.hidden) return;
+      const chakra = select('.scroll-chakra');
+      chakra.style.setProperty('--chakra-rotation',((scrollY * .035) % 360).toFixed(2) + 'deg');
+      const bounds = handScene.getBoundingClientRect();
+      if (bounds.bottom <= 0 || bounds.top >= innerHeight) return;
+      const progress = Math.max(0,Math.min(1,(innerHeight - bounds.top) / (innerHeight + bounds.height)));
+      const distance = innerWidth <= 600 ? 28 : 48;
+      handScene.style.setProperty('--hand-scroll-y',((progress - .5) * distance).toFixed(2) + 'px');
+      handScene.style.setProperty('--hand-scroll-scale',(1.08 + progress * .04).toFixed(4));
+    }
+    function queueHandScroll() { if (!handScrollFrame) handScrollFrame = requestAnimationFrame(updateHandScroll); }
+    window.addEventListener('scroll',queueHandScroll,{passive:true});
+    window.addEventListener('resize',queueHandScroll);
+    document.addEventListener('visibilitychange',queueHandScroll);
+    async function closeOpening() {
+      const opening = select('#opening');
+      if (opening.hidden || opening.classList.contains('is-closing')) return;
+      const finishOpening = () => { opening.hidden = true; document.body.classList.remove('opening-transfer'); document.body.classList.add('invitation-open'); };
+      if (motionPreference.matches) { finishOpening(); return; }
+      select('#open-invitation').disabled = true;
+      await Promise.all([document.fonts.ready,select('.hero-photo img').decode().catch(() => {})]);
+      window.scrollTo({top:0,left:0,behavior:'instant'});
+      const pairs = [['.ganapathy','.hero-ganapathy'],['.first-name','.hero-first-name'],['.opening-names em','.hero-copy h1 em'],['.second-name','.hero-second-name']];
+      const movements = pairs.map(([sourceSelector,targetSelector]) => {
+        const source = select(sourceSelector); const target = select(targetSelector);
+        source.getAnimations().forEach(animation => animation.finish());
+        const start = source.getBoundingClientRect(); const end = target.getBoundingClientRect();
+        return {source,transform:'translate(' + (end.left - start.left) + 'px,' + (end.top - start.top) + 'px) scale(' + end.width / start.width + ',' + end.height / start.height + ')'};
+      });
+      opening.classList.add('is-closing'); document.body.classList.add('opening-transfer');
+      const animations = movements.map(({source,transform}) => source.animate([{transform:'translate(0,0) scale(1)'},{transform}],{duration:1600,easing:'cubic-bezier(.22,.7,.18,1)',fill:'forwards'}));
+      await Promise.all(animations.map(animation => animation.finished.catch(() => {})));
+      finishOpening();
+    }
+    select('#open-invitation').addEventListener('click',() => { startMusic(); closeOpening(); });
+    if (motionPreference.matches) closeOpening();
+    function updateMotion() { document.body.classList.toggle('motion-paused',motionPaused); queueHandScroll(); }
+    updateMotion(); motionPreference.addEventListener('change',event => { motionPaused = event.matches; updateMotion(); });
+    if ('IntersectionObserver' in window) { document.body.classList.add('motion-ready'); const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.remove('pending'); observer.unobserve(entry.target); } }),{threshold:.08}); document.querySelectorAll('.reveal').forEach(element => { element.classList.add('pending'); observer.observe(element); }); }
+    select('.hero').addEventListener('pointermove',event => { if (motionPaused || event.pointerType === 'touch') return; const bounds = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty('--pointer-x',((event.clientX - bounds.left) / bounds.width - .5) * 12 + 'px'); event.currentTarget.style.setProperty('--pointer-y',((event.clientY - bounds.top) / bounds.height - .5) * 8 + 'px'); });
+    select('.hero').addEventListener('pointerleave',event => { event.currentTarget.style.setProperty('--pointer-x','0px'); event.currentTarget.style.setProperty('--pointer-y','0px'); });
+    select('.hand-scene').addEventListener('pointermove',event => { if (!motionPaused && event.pointerType !== 'touch') event.currentTarget.style.setProperty('--hand-x',(event.clientX / innerWidth - .5) * 12 + 'px'); });
+    const song = select('#song'); const musicButton = select('#music-button'); let audioFrame = 0; let musicBusy = false; let fadeResolve = null; let audioGeneration = 0; let autoplayPending = true;
+    function musicState(playing) { musicButton.setAttribute('aria-pressed',String(playing)); musicButton.setAttribute('aria-label',(playing ? 'Pause' : 'Play') + ' Pesamale preview'); musicButton.title = musicButton.getAttribute('aria-label'); musicButton.innerHTML = '<i data-lucide="' + (playing ? 'pause' : 'play') + '"></i>'; select('#music-state').textContent = playing ? '· Playing preview' : '· Preview'; icons(); }
+    function cancelFade() { cancelAnimationFrame(audioFrame); if (fadeResolve) { fadeResolve(); fadeResolve = null; } }
+    function fadeVolume(target,duration) { cancelFade(); const start = performance.now(); const initial = song.volume; return new Promise(resolve => { fadeResolve = resolve; function step(now) { const progress = Math.min(1,(now - start) / duration); song.volume = Math.max(0,Math.min(1,initial + (target - initial) * progress)); if (progress < 1) audioFrame = requestAnimationFrame(step); else { fadeResolve = null; resolve(); } } audioFrame = requestAnimationFrame(step); }); }
+    async function startMusic(automatic = false) {
+      if (musicBusy || !song.paused || document.hidden) return;
+      musicBusy = true; const generation = ++audioGeneration;
+      try {
+        if (song.ended) song.currentTime = 0;
+        song.volume = 0; await song.play();
+        if (generation !== audioGeneration || document.hidden) { song.pause(); return; }
+        autoplayPending = false; musicState(true); await fadeVolume(.65,1400);
+      } catch (error) {
+        if (generation !== audioGeneration) return;
+        musicState(false);
+        if (automatic && error.name === 'NotAllowedError') { select('#music-state').textContent = '· Tap to play'; musicButton.title = 'Play Pesamale'; }
+        else if (!automatic) toast('The preview could not play. You can open the full song on Apple Music.');
+      } finally { if (generation === audioGeneration) musicBusy = false; }
+    }
+    musicButton.addEventListener('click',async () => { if (musicBusy) return; autoplayPending = false; if (song.paused) { await startMusic(); return; } musicBusy = true; const generation = ++audioGeneration; await fadeVolume(0,400); if (generation === audioGeneration) { song.pause(); musicBusy = false; } });
+    document.addEventListener('click',event => { if (event.isTrusted && autoplayPending && !event.target.closest('#music-button,#open-invitation')) startMusic(true); },{capture:true});
+    window.addEventListener('DOMContentLoaded',() => startMusic(true));
+    song.addEventListener('timeupdate',() => { if (Number.isFinite(song.duration) && song.duration - song.currentTime < 2) song.volume = Math.max(0,.65 * (song.duration - song.currentTime) / 2); }); song.addEventListener('ended',() => musicState(false)); song.addEventListener('pause',() => musicState(false));
+    document.addEventListener('visibilitychange',() => { document.body.classList.toggle('page-hidden',document.hidden); if (document.hidden) { audioGeneration++; cancelFade(); song.pause(); musicBusy = false; } });
+    const tabs = [select('#rsvp-tab'),select('#wish-tab')];
+    function setTab(active) { tabs.forEach(tab => { const selected = tab === active; tab.setAttribute('aria-selected',String(selected)); tab.tabIndex = selected ? 0 : -1; select('#' + tab.getAttribute('aria-controls')).hidden = !selected; }); }
+    tabs.forEach(tab => { tab.addEventListener('click',() => setTab(tab)); tab.addEventListener('keydown',event => { if (['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) { event.preventDefault(); const next = event.key === 'Home' ? tabs[0] : event.key === 'End' ? tabs[1] : tabs.find(item => item !== tab); setTab(next); next.focus(); } }); });
+    const attendance = select('[name="attendance"]'); attendance.addEventListener('change',() => { const declined = attendance.value === 'no'; select('#guest-count-label').hidden = declined; select('[name="guests"]').disabled = declined; select('#family-members-label').hidden = declined; select('[name="familyMembers"]').disabled = declined; select('[name="familyMembers"]').required = attendance.value === 'yes'; });
+    let records = []; let storageAvailable = true;
+    try { const saved = JSON.parse(localStorage.getItem(CONFIG.storageKey) || '[]'); if (!Array.isArray(saved)) throw new Error('Invalid stored responses'); records = saved.filter(record => record && typeof record.id === 'string' && ['RSVP','Wishes','Blessings'].includes(record.type) && record.data && ['pending','synced'].includes(record.status)); } catch { storageAvailable = false; }
+    function persist() { try { localStorage.setItem(CONFIG.storageKey,JSON.stringify(records)); storageAvailable = true; return true; } catch { storageAvailable = false; return false; } }
+    const cloudConfigured = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(CONFIG.appsScriptUrl);
+    function storageNote() { select('#storage-note').hidden = true; select('#retry-button').hidden = !cloudConfigured || !records.some(record => record.status === 'pending'); }
+    function renderWishes() { const list = select('#saved-wishes'); list.replaceChildren(); records.filter(record => record.type === 'Wishes').slice(-3).reverse().forEach(record => { const article = document.createElement('article'); article.className = 'saved-wish'; const message = document.createElement('p'); message.textContent = record.data.message; const attribution = document.createElement('small'); attribution.textContent = record.data.name; article.append(message,attribution); list.append(article); }); }
+    const deliveries = new Map();
+    window.addEventListener('message',event => { if (!/^https:\/\/(?:[a-z0-9-]+-)?script\.googleusercontent\.com$/.test(event.origin) && event.origin !== 'https://script.google.com') return; const reply = event.data; if (!reply || reply.type !== 'wedding-save' || !deliveries.has(reply.id)) return; deliveries.get(reply.id)(reply.ok === true); });
+    function deliver(record) {
+      if (!cloudConfigured || !navigator.onLine || deliveries.has(record.id)) return Promise.resolve(false);
+      return new Promise(resolve => {
+        const frame = document.createElement('iframe'); frame.name = 'save_' + record.id; frame.hidden = true; frame.title = 'Private response delivery';
+        const form = document.createElement('form'); form.method = 'POST'; form.action = CONFIG.appsScriptUrl; form.target = frame.name; form.hidden = true;
+        const input = document.createElement('input'); input.name = 'payload'; input.value = JSON.stringify({id:record.id,type:record.type,data:record.data}); form.append(input);
+        const timer = setTimeout(() => finish(false),20000);
+        function finish(ok) { clearTimeout(timer); deliveries.delete(record.id); frame.remove(); form.remove(); if (ok) { record.status = 'synced'; persist(); renderWishes(); const statusSelector = {RSVP:'#rsvp-status',Wishes:'#wish-status',Blessings:'#blessing-status'}[record.type]; select(statusSelector).textContent = 'Response saved.'; } storageNote(); resolve(ok); }
+        deliveries.set(record.id,finish); document.body.append(frame,form); form.submit();
       });
     }
-
-    function animatePetals() {
-      ctx.clearRect(0, 0, width, height);
-      petals.forEach(p => {
-        p.x += p.dx;
-        p.y += p.dy;
-        p.angle += p.angularSpeed;
-
-        if (p.y > height + 20) {
-          p.y = -20;
-          p.x = Math.random() * width;
+    async function saveResponse(type,data,status) {
+      const id = typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Array.from(crypto.getRandomValues(new Uint8Array(16)),byte => byte.toString(16).padStart(2,'0')).join(''); const record = {id,type,data,status:'pending'};
+      if (!storageAvailable || records.filter(item => item.status === 'pending').length >= 100) { status.textContent = 'We couldn\'t submit your response. Please try again.'; return false; }
+      records.push(record); if (!persist()) { records.pop(); status.textContent = 'We couldn\'t submit your response. Please try again.'; return false; }
+      renderWishes(); storageNote(); status.textContent = 'Sending your response...';
+      const delivered = await deliver(record); status.textContent = delivered ? 'Response saved.' : 'We couldn\'t confirm delivery. Please try again when online.'; return true;
+    }
+    function connectForm(selector,type,statusSelector) {
+      select(selector).addEventListener('submit',async event => {
+        event.preventDefault(); const form = event.currentTarget; if (!form.reportValidity()) return; const data = Object.fromEntries(new FormData(form)); Object.keys(data).forEach(key => { if (typeof data[key] === 'string') data[key] = data[key].trim(); });
+        if (!data.name || (type === 'Wishes' && !data.message)) { select(statusSelector).textContent = 'Please add your name' + (type === 'Wishes' ? ' and a message.' : '.'); return; }
+        if (type === 'RSVP') {
+          if (data.attendance === 'yes' && !data.familyMembers) { select(statusSelector).textContent = 'Please add the names of the family members attending.'; return; }
+          data.guests = data.attendance === 'no' ? 0 : Number(data.guests);
+          data.note = [data.familyMembers ? 'Attending family members: ' + data.familyMembers : '',data.note ? 'Notes: ' + data.note : ''].filter(Boolean).join('\n');
+          delete data.familyMembers;
         }
-        if (p.x > width + 20) p.x = -20;
-        if (p.x < -20) p.x = width + 20;
-
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.angle);
-        ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity})`;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, p.r * 1.4, p.r * 0.8, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
+        const button = form.querySelector('[type="submit"]'); button.disabled = true;
+        try { if (await saveResponse(type,data,select(statusSelector))) { form.reset(); if (type === 'RSVP') attendance.dispatchEvent(new Event('change')); } } finally { button.disabled = false; }
       });
-      requestAnimationFrame(animatePetals);
     }
-    animatePetals();
-
-    // 3. Countdown Timer
-    const weddingDate = new Date("December 14, 2026 10:00:00 GMT+0530").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance < 0) {
-        document.getElementById("days").innerText = "00";
-        document.getElementById("hours").innerText = "00";
-        document.getElementById("mins").innerText = "00";
-        document.getElementById("secs").innerText = "00";
-        return;
-      }
-
-      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = String(d).padStart(2, '0');
-      document.getElementById("hours").innerText = String(h).padStart(2, '0');
-      document.getElementById("mins").innerText = String(m).padStart(2, '0');
-      document.getElementById("secs").innerText = String(s).padStart(2, '0');
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // 4. Interactive Lamp
-    let lampsCount = 348;
-    function lightLamp() {
-      lampsCount++;
-      const counterEl = document.getElementById("blessing-count");
-      if (counterEl) counterEl.innerText = lampsCount;
-
-      const btnText = document.getElementById("light-btn-text");
-      if (btnText) btnText.innerText = "ദീപം ജ്വലിച്ചു • Blessing Received!";
-
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 45,
-          spread: 70,
-          origin: { y: 0.65 },
-          colors: ['#FF9800', '#FFC107', '#E91E63', '#FFF8E1']
-        });
-      }
-      playTempleBellChime();
-    }
-
-    function playTempleBellChime() {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(880, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 1.4);
-
-        gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.4);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start();
-        osc.stop(ctx.currentTime + 1.4);
-      } catch (err) {}
-    }
-
-    // 5. Synthesized Audio
-    let isPlaying = false;
-    document.getElementById("audio-btn").addEventListener("click", () => {
-      isPlaying = !isPlaying;
-      const text = document.getElementById("audio-text");
-      if (isPlaying) {
-        text.innerText = "Playing • നിർവൃതി";
-        startHarmonicDrone();
-      } else {
-        text.innerText = "പ്രണവ മന്ത്രം • Music";
-        stopHarmonicDrone();
-      }
+    connectForm('#rsvp-form','RSVP','#rsvp-status'); connectForm('#wish-form','Wishes','#wish-status');
+    function blessingState() { const sent = records.some(record => record.type === 'Blessings'); select('#blessing').classList.toggle('lit',sent); select('#blessing-button').setAttribute('aria-pressed',String(sent)); select('#blessing-label').textContent = sent ? 'A little light, with your love' : 'With your love & blessings'; }
+    select('#blessing-button').addEventListener('click',async () => { if (records.some(record => record.type === 'Blessings')) { toast('You have already sent a blessing. Thank you.'); return; } const button = select('#blessing-button'); button.disabled = true; try { await saveResponse('Blessings',{},select('#blessing-status')); blessingState(); } finally { button.disabled = false; } });
+    async function retryPending() { const button = select('#retry-button'); button.disabled = true; try { for (const record of records.filter(item => item.status === 'pending')) { if (!await deliver(record)) break; } } finally { button.disabled = false; storageNote(); } }
+    select('#retry-button').addEventListener('click',retryPending); window.addEventListener('online',retryPending); storageNote(); renderWishes(); blessingState(); if (cloudConfigured && records.some(record => record.status === 'pending')) retryPending();
+    select('#share-button').addEventListener('click',async () => {
+      const share = {title:'Visakh & Arya | Wedding invitation',text:'Join us on 14 December 2026, 11:30 AM, in Thiruvananthapuram.',url:CONFIG.shareUrl};
+      try { if (navigator.share) await navigator.share(share); else { await navigator.clipboard.writeText(share.url); toast('Invitation link copied.'); } } catch (error) { if (error.name !== 'AbortError') toast('Please share the invitation URL from your address bar.'); }
     });
-
-    let droneAudioCtx = null, droneOsc1 = null, droneOsc2 = null;
-
-    function startHarmonicDrone() {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        droneAudioCtx = new AudioCtx();
-        droneOsc1 = droneAudioCtx.createOscillator();
-        droneOsc2 = droneAudioCtx.createOscillator();
-        const masterGain = droneAudioCtx.createGain();
-
-        droneOsc1.type = "triangle";
-        droneOsc1.frequency.setValueAtTime(146.83, droneAudioCtx.currentTime);
-
-        droneOsc2.type = "sine";
-        droneOsc2.frequency.setValueAtTime(220.00, droneAudioCtx.currentTime);
-
-        masterGain.gain.setValueAtTime(0.08, droneAudioCtx.currentTime);
-
-        droneOsc1.connect(masterGain);
-        droneOsc2.connect(masterGain);
-        masterGain.connect(droneAudioCtx.destination);
-
-        droneOsc1.start();
-        droneOsc2.start();
-      } catch(e) {}
-    }
-
-    function stopHarmonicDrone() {
-      if (droneAudioCtx) {
-        try {
-          droneOsc1 && droneOsc1.stop();
-          droneOsc2 && droneOsc2.stop();
-          droneAudioCtx.close();
-        } catch(e) {}
-      }
-    }
-
-    // 6. Calendar & Wishes Helpers
-    function addToCalendar(e) {
-      e.preventDefault();
-      const title = encodeURIComponent("Wedding of Visakh & Arya");
-      const details = encodeURIComponent("Holy Matrimony of Visakh Vijayakumar and Arya Narayanan at Attukal Bhagavathy Temple followed by traditional Kerala Sadya.");
-      const location = encodeURIComponent("Attukal Bhagavathy Temple, Manacaud, Thiruvananthapuram, Kerala 695009");
-      const dates = "20261214T043000Z/20261214T083000Z";
-      window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`, "_blank");
-    }
-
-    function submitWish(e) {
-      e.preventDefault();
-      const name = document.getElementById("guest-name").value.trim();
-      const city = document.getElementById("guest-city").value.trim();
-      const message = document.getElementById("guest-message").value.trim();
-      if (!name || !message) return;
-
-      const list = document.getElementById("wishes-list");
-      const wishCard = document.createElement("div");
-      wishCard.className = "p-3.5 rounded-xl bg-amber-50/90 border border-kasavu/30 text-xs sm:text-sm";
-      wishCard.innerHTML = `
-        <div class="flex justify-between font-bold text-maroon mb-1">
-          <span>${escapeHtml(name)} ${city ? `<span class="text-slate-500 font-normal text-xs">(${escapeHtml(city)})</span>` : ''}</span>
-          <span class="text-[11px] text-amber-700 font-semibold">Just now</span>
-        </div>
-        <p class="text-slate-700">“${escapeHtml(message)}”</p>
-      `;
-      list.prepend(wishCard);
-      document.getElementById("wish-form").reset();
-
-      if (typeof confetti === 'function') {
-        confetti({ particleCount: 25, spread: 40, origin: { y: 0.85 }, colors: ['#FFD54F', '#6B1D2F', '#4CAF50'] });
-      }
-    }
-
-    function escapeHtml(str) {
-      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-    }
   </script>
 </body>
 </html>
